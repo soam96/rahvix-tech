@@ -5,7 +5,11 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import Image from "next/image";
 
-export default function Navbar() {
+interface NavbarProps {
+  isLoaded?: boolean;
+}
+
+export default function Navbar({ isLoaded = true }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -35,7 +39,10 @@ export default function Navbar() {
 
   return (
     <>
-      <header
+      <motion.header
+        initial={{ y: -80, opacity: 0 }}
+        animate={isLoaded ? { y: 0, opacity: 1 } : { y: -80, opacity: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled || mobileMenuOpen
             ? "bg-slate-950/95 border-b border-slate-900 py-4 shadow-lg backdrop-blur-md"
@@ -46,7 +53,6 @@ export default function Navbar() {
           {/* Logo */}
           <a href="#" className="flex items-center gap-2.5 group">
             <div className="relative w-12 h-10 rounded-lg overflow-hidden flex items-center justify-center border border-slate-800 bg-slate-950 shrink-0 shadow-md">
-              {/* Next.js Image with explicit dimensions — eliminates CLS */}
               <Image
                 src="/logo.jpg"
                 alt="Rahvix Technologies Logo"
@@ -106,7 +112,7 @@ export default function Navbar() {
           style={{ scaleX }}
         />
 
-        {/* Mobile Nav Drawer (Nested inside header absolutely positioned at top-full) */}
+        {/* Mobile Nav Drawer */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
@@ -166,7 +172,7 @@ export default function Navbar() {
             </motion.div>
           )}
         </AnimatePresence>
-      </header>
+      </motion.header>
     </>
   );
 }

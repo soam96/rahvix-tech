@@ -3,7 +3,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { ArrowUpRight, Play, Zap, Cpu, Award, Users } from "lucide-react";
 import { motion, useMotionValue, useSpring, useTransform, useInView } from "framer-motion";
-import Image from "next/image";
 
 // Animated counter that counts up from 0 when in view
 function AnimatedStat({
@@ -24,14 +23,13 @@ function AnimatedStat({
   useEffect(() => {
     if (!isInView) return;
 
-    // Extract numeric part and suffix (e.g. "99.9%" → 99.9 + "%", "₹40Cr+" → 40 + "Cr+")
     const match = value.match(/^(₹?|\$?)([0-9.]+)(.*)$/);
     if (!match) {
       setDisplayed(value);
       return;
     }
 
-    const prefix = match[1]; // "₹", "$" or ""
+    const prefix = match[1]; // "₹" or "$"
     const target = parseFloat(match[2]);
     const suffix = match[3]; // "%", "x", "Cr+", "M+", etc.
     const duration = 1800;
@@ -40,7 +38,6 @@ function AnimatedStat({
     const step = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease-out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
       const current = target * eased;
       const formatted =
@@ -62,12 +59,16 @@ function AnimatedStat({
           {displayed}
         </span>
       </div>
-      <p className="text-[11px] text-slate-400 font-bold uppercase tracking-wider">{label}</p>
+      <p className="text-[11px] text-slate-450 font-bold uppercase tracking-wider">{label}</p>
     </div>
   );
 }
 
-export default function Hero() {
+interface HeroProps {
+  isLoaded?: boolean;
+}
+
+export default function Hero({ isLoaded = true }: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Mouse tilt variables for 3D card effect
@@ -80,12 +81,11 @@ export default function Hero() {
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["12deg", "-12deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-12deg", "12deg"]);
 
-  // Debounced mousemove — only update at most 60fps
   const rafRef = useRef<number | null>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
-    if (rafRef.current) return; // throttle to one update per frame
+    if (rafRef.current) return;
 
     rafRef.current = requestAnimationFrame(() => {
       if (!containerRef.current) return;
@@ -137,7 +137,7 @@ export default function Hero() {
       {/* 3D grid line overlay */}
       <div className="absolute inset-0 neon-grid opacity-30 -z-10 pointer-events-none" />
 
-      {/* Floating Creative Accent Shapes */}
+      {/* Floating Accent Shapes */}
       <div className="absolute top-[20%] right-[15%] w-3 h-3 rounded-full bg-brand-orange/40 animate-float-slow -z-10" />
       <div className="absolute bottom-[25%] left-[15%] w-4 h-4 rounded-full bg-brand-purple/40 animate-float -z-10" />
       <div className="absolute top-[35%] left-[10%] w-2 h-2 rounded-full bg-brand-teal/50 animate-float-slow -z-10" />
@@ -149,8 +149,8 @@ export default function Hero() {
           {/* Tagline */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-800 bg-slate-950/60 backdrop-blur-md w-fit mb-6 shadow-sm"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-brand-teal animate-ping" />
@@ -162,8 +162,8 @@ export default function Hero() {
           {/* Heading */}
           <motion.h1
             initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ duration: 0.6, delay: 0.45 }}
             className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.08] max-w-2xl font-sans"
           >
             Architecting <span className="text-gradient-cyan-blue">Digital</span>{" "}
@@ -173,8 +173,8 @@ export default function Hero() {
           {/* Subtext */}
           <motion.p
             initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ duration: 0.6, delay: 0.55 }}
             className="text-slate-300 text-base sm:text-lg max-w-xl mb-10 leading-relaxed font-medium"
           >
             We build next-generation automated software pipelines, elite cloud applications, and data-driven client acquisition systems.
@@ -183,8 +183,8 @@ export default function Hero() {
           {/* Action buttons */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ duration: 0.6, delay: 0.65 }}
             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
           >
             <a
@@ -197,7 +197,7 @@ export default function Hero() {
 
             <a
               href="#services"
-              className="relative inline-flex items-center justify-center px-8 py-4 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-300 font-bold text-sm hover:bg-slate-800 hover:border-brand-teal/50 hover:text-white hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] active:scale-[0.98] transition-all duration-300 group w-full sm:w-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-teal focus-visible:outline-offset-2"
+              className="relative inline-flex items-center justify-center px-8 py-4 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-300 font-bold text-sm hover:bg-slate-880 hover:border-brand-teal/50 hover:text-white hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] active:scale-[0.98] transition-all duration-300 group w-full sm:w-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-teal focus-visible:outline-offset-2"
             >
               <span className="flex items-center gap-2">
                 <Play className="w-4 h-4 text-brand-teal fill-brand-teal/20 group-hover:scale-110 transition-transform" />
@@ -215,12 +215,12 @@ export default function Hero() {
                 y: 0,
                 transition: {
                   staggerChildren: 0.12,
-                  delayChildren: 0.4,
+                  delayChildren: 0.8,
                 }
               }
             }}
             initial="hidden"
-            animate="visible"
+            animate={isLoaded ? "visible" : "hidden"}
             className="mt-16 p-6 sm:p-8 rounded-2xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-md grid grid-cols-1 sm:grid-cols-3 gap-8 w-full max-w-3xl lg:mx-0 mx-auto font-mono"
           >
             {stats.map((stat) => (
@@ -247,45 +247,50 @@ export default function Hero() {
               transformPerspective: 1000,
               transformStyle: "preserve-3d"
             }}
-            animate={isMobile ? {
-              y: [0, -12, 0],
-              rotate: [0, 0.8, -0.8, 0],
-            } : {}}
-            transition={isMobile ? {
+            initial={{ opacity: 0, scale: 0.95, y: 25 }}
+            animate={isLoaded 
+              ? (isMobile 
+                ? { opacity: 1, scale: 1, y: [0, -10, 0], rotate: [0, 0.5, -0.5, 0] } 
+                : { opacity: 1, scale: 1, y: 0 }) 
+              : { opacity: 0, scale: 0.95, y: 25 }
+            }
+            transition={isLoaded && isMobile ? {
               repeat: Infinity,
-              duration: 5,
+              duration: 6,
               ease: "easeInOut"
-            } : {}}
-            className="w-full max-w-[440px] aspect-square rounded-3xl border border-slate-800 bg-slate-900/60 p-4 shadow-2xl backdrop-blur-md relative overflow-hidden"
+            } : { duration: 0.8, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
+            // Changed aspect ratio on mobile from aspect-square to aspect-[4/5] to resolve mobile cut-off
+            className="w-full max-w-[440px] aspect-[4/5] sm:aspect-square rounded-3xl border border-slate-800 bg-slate-900/60 p-3 sm:p-4 shadow-2xl backdrop-blur-md relative overflow-hidden"
           >
             {/* Holographic scanner active line overlay */}
             <div className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-brand-orange via-brand-purple to-brand-teal opacity-50 z-20 animate-scanline pointer-events-none" />
 
-            <div className="w-full h-full rounded-2xl bg-slate-950/80 border border-slate-800/80 p-4 font-mono flex flex-col justify-between relative shadow-inner select-none overflow-hidden">
+            {/* Changed padding to p-3 on mobile to maximize viewport area */}
+            <div className="w-full h-full rounded-2xl bg-slate-950/80 border border-slate-800/80 p-3 sm:p-4 font-mono flex flex-col justify-between relative shadow-inner select-none overflow-hidden">
               {/* Window Header */}
-              <div className="flex items-center justify-between pb-3 border-b border-slate-900 mb-4 shrink-0">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-900 mb-3 sm:mb-4 shrink-0">
                 <div className="flex gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
                   <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
                 </div>
-                <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest">pipeline.config.yaml</span>
+                <span className="text-[9px] text-slate-550 font-bold uppercase tracking-widest">pipeline.config.yaml</span>
                 <span className="text-[9px] text-brand-blue font-bold">active</span>
               </div>
 
               {/* Grid Lines */}
               <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:16px_16px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-25 pointer-events-none" />
 
-              {/* Core visual layout */}
-              <div className="flex-1 flex flex-col justify-between gap-4 relative z-10">
+              {/* Core visual layout - reduced gap size on mobile to fit vertical viewport */}
+              <div className="flex-1 flex flex-col justify-between gap-2.5 sm:gap-4 relative z-10">
                 {/* Visual Pipeline Nodes */}
-                <div className="grid grid-cols-3 gap-2 items-center">
-                  <div className="bg-slate-900/60 border border-slate-850 p-2.5 rounded-lg flex flex-col gap-1 items-center">
-                    <span className="text-[9px] text-slate-400 font-bold">SOURCE</span>
-                    <div className="w-7 h-7 rounded-lg bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center">
+                <div className="grid grid-cols-3 gap-1.5 sm:gap-2 items-center">
+                  <div className="bg-slate-900/60 border border-slate-850 p-2 sm:p-2.5 rounded-lg flex flex-col gap-1 items-center">
+                    <span className="text-[9px] text-slate-450 font-bold">SOURCE</span>
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center">
                       <Cpu className="w-3.5 h-3.5 text-brand-blue" />
                     </div>
-                    <span className="text-[8px] text-slate-500">API Ingest</span>
+                    <span className="text-[8px] text-slate-550">API Ingest</span>
                   </div>
                   <div className="flex flex-col items-center">
                     <span className="text-[8px] text-brand-orange font-bold animate-pulse">PROCESSING</span>
@@ -299,36 +304,36 @@ export default function Hero() {
                       </svg>
                     </div>
                   </div>
-                  <div className="bg-slate-900/60 border border-slate-850 p-2.5 rounded-lg flex flex-col gap-1 items-center">
-                    <span className="text-[9px] text-slate-400 font-bold">MODEL</span>
-                    <div className="w-7 h-7 rounded-lg bg-brand-orange/10 border border-brand-orange/30 flex items-center justify-center">
+                  <div className="bg-slate-900/60 border border-slate-850 p-2 sm:p-2.5 rounded-lg flex flex-col gap-1 items-center">
+                    <span className="text-[9px] text-slate-450 font-bold">MODEL</span>
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-brand-orange/10 border border-brand-orange/30 flex items-center justify-center">
                       <Zap className="w-3.5 h-3.5 text-brand-orange" />
                     </div>
-                    <span className="text-[8px] text-slate-500">LLM Parse</span>
+                    <span className="text-[8px] text-slate-550">LLM Parse</span>
                   </div>
                 </div>
 
-                {/* Simulated Code Panel */}
-                <div className="flex-1 bg-slate-900/40 border border-slate-850 p-3 rounded-lg flex flex-col justify-between font-mono text-[10px] text-slate-400 leading-relaxed overflow-hidden">
-                  <div className="text-[9px] sm:text-[10px]">
+                {/* Simulated Code Panel - scaled font and padding to prevent cutoff on mobile */}
+                <div className="flex-1 bg-slate-900/40 border border-slate-850 p-2 sm:p-3 rounded-lg flex flex-col justify-between font-mono text-[8.5px] sm:text-[10px] text-slate-400 leading-relaxed overflow-hidden">
+                  <div className="text-[8px] sm:text-[9.5px] space-y-0.5">
                     <p className="text-slate-500">// Initialize autonomous routing</p>
                     <p className="text-brand-blue"><span className="text-purple-400">const</span> agent <span className="text-slate-300">=</span> <span className="text-amber-300">new</span> <span className="text-emerald-400">RahvixAgent</span><span className="text-slate-300">({'{'}</span></p>
-                    <p className="pl-4">model: <span className="text-brand-orange">&quot;gpt-4o-automation&quot;</span>,</p>
-                    <p className="pl-4">temperature: <span className="text-brand-orange">0.0</span>,</p>
-                    <p className="pl-4">pipeline: <span className="text-brand-orange">&quot;custom-crm-sync&quot;</span></p>
+                    <p className="pl-3 sm:pl-4">model: <span className="text-brand-orange">&quot;gpt-4o-automation&quot;</span>,</p>
+                    <p className="pl-3 sm:pl-4">temperature: <span className="text-brand-orange">0.0</span>,</p>
+                    <p className="pl-3 sm:pl-4">pipeline: <span className="text-brand-orange">&quot;custom-crm-sync&quot;</span></p>
                     <p className="text-slate-300">{'}'});</p>
                   </div>
-                  <div className="border-t border-slate-850/50 pt-2 flex items-center justify-between text-[8px] text-slate-500 font-semibold uppercase">
+                  <div className="border-t border-slate-850/50 pt-1.5 flex items-center justify-between text-[7.5px] sm:text-[8px] text-slate-500 font-semibold uppercase">
                     <span>uptime: 99.9%</span>
                     <span>latency: 48ms</span>
                   </div>
                 </div>
 
                 {/* Stats Pill / Chart Graphic */}
-                <div className="grid grid-cols-2 gap-2.5">
-                  <div className="bg-slate-900/50 border border-slate-850 p-2.5 rounded-lg flex items-center justify-between">
+                <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
+                  <div className="bg-slate-900/50 border border-slate-850 p-2 sm:p-2.5 rounded-lg flex items-center justify-between">
                     <div>
-                      <span className="text-[8px] text-slate-500 uppercase font-bold">Efficiency</span>
+                      <span className="text-[8px] text-slate-550 uppercase font-bold">Efficiency</span>
                       <p className="text-xs font-bold text-white mt-0.5">+340%</p>
                     </div>
                     <div className="h-6 w-10 flex items-end gap-0.5 pb-0.5">
@@ -338,9 +343,9 @@ export default function Hero() {
                       <div className="w-1.5 h-6 bg-brand-blue rounded-t" />
                     </div>
                   </div>
-                  <div className="bg-slate-900/50 border border-slate-850 p-2.5 rounded-lg flex items-center justify-between">
+                  <div className="bg-slate-900/50 border border-slate-850 p-2 sm:p-2.5 rounded-lg flex items-center justify-between">
                     <div>
-                      <span className="text-[8px] text-slate-500 uppercase font-bold">ROI generated</span>
+                      <span className="text-[8px] text-slate-550 uppercase font-bold">ROI generated</span>
                       <p className="text-xs font-bold text-brand-orange mt-0.5">6.2x</p>
                     </div>
                     <div className="h-6 w-10 flex items-center justify-center">

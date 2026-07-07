@@ -1,3 +1,7 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import LoadingScreen from "@/components/LoadingScreen";
 import Navbar from "@/components/Navbar";
 import InteractiveBackground from "@/components/InteractiveBackground";
 import Hero from "@/components/Hero";
@@ -9,18 +13,38 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Disable scrolling while loader is active
+    if (!isLoaded) {
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    };
+  }, [isLoaded]);
+
   return (
     <>
+      {/* Premium Loader Screen overlay */}
+      <LoadingScreen onComplete={() => setIsLoaded(true)} />
+
       {/* Dynamic Interactive Particle Grid Canvas */}
       <InteractiveBackground />
       
-      {/* Sticky Glassmorphism Header */}
-      <Navbar />
+      {/* Sticky Glassmorphism Header — slides down after loader finishes */}
+      <Navbar isLoaded={isLoaded} />
       
       {/* Main Sections */}
       <main className="flex-1 w-full relative z-10">
-        {/* Cinematic Hero Segment */}
-        <Hero />
+        {/* Cinematic Hero Segment — entrance animations wait for loader */}
+        <Hero isLoaded={isLoaded} />
         
         {/* Capabilities Grid */}
         <Services />
