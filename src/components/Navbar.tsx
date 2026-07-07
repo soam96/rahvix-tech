@@ -51,7 +51,13 @@ export default function Navbar({ isLoaded = true }: NavbarProps) {
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group">
+          <motion.a
+            href="#"
+            initial={{ opacity: 0, x: -15 }}
+            animate={isLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: -15 }}
+            transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.35 }}
+            className="flex items-center gap-2.5 group"
+          >
             <div className="relative w-12 h-10 rounded-lg overflow-hidden flex items-center justify-center border border-slate-800 bg-slate-950 shrink-0 shadow-md">
               <Image
                 src="/logo.jpg"
@@ -65,24 +71,48 @@ export default function Navbar({ isLoaded = true }: NavbarProps) {
             <span className="font-sans font-extrabold tracking-tight text-white transition-colors duration-300">
               Rahvix <span className="text-brand-orange">Technologies</span>
             </span>
-          </a>
+          </motion.a>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
+          {/* Desktop Nav - Staggered slide down */}
+          <motion.nav
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  staggerChildren: 0.06,
+                  delayChildren: 0.45,
+                }
+              }
+            }}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
+            className="hidden md:flex items-center gap-8"
+            aria-label="Main navigation"
+          >
             {navLinks.map((link) => (
-              <a
+              <motion.a
                 key={link.name}
                 href={link.href}
+                variants={{
+                  hidden: { opacity: 0, y: -15 },
+                  visible: { opacity: 1, y: 0 }
+                }}
+                transition={{ type: "spring", stiffness: 120, damping: 14 }}
                 className="relative text-sm text-slate-350 hover:text-white transition-colors duration-300 group py-1 font-mono font-bold tracking-wide focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-orange focus-visible:outline-offset-4 rounded"
               >
                 {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-brand-orange transition-all duration-300 group-hover:w-full" />
-              </a>
+                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-brand-orange transition-all duration-305 group-hover:w-full" />
+              </motion.a>
             ))}
-          </nav>
+          </motion.nav>
 
           {/* CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: -10 }}
+            animate={isLoaded ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.9, y: -10 }}
+            transition={{ type: "spring", stiffness: 120, damping: 15, delay: 0.75 }}
+            className="hidden md:flex items-center gap-4"
+          >
             <a
               href="#contact"
               className="relative inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-white transition-all duration-300 rounded-lg overflow-hidden bg-brand-orange hover:bg-brand-orange/95 hover:shadow-[0_4px_15px_rgba(250,90,21,0.25)] border border-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-orange focus-visible:outline-offset-2"
@@ -92,7 +122,7 @@ export default function Navbar({ isLoaded = true }: NavbarProps) {
                 <ArrowUpRight className="w-4 h-4 transition-transform duration-300 text-white" />
               </span>
             </a>
-          </div>
+          </motion.div>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -106,7 +136,7 @@ export default function Navbar({ isLoaded = true }: NavbarProps) {
           </button>
         </div>
 
-        {/* Scroll Progress Bar at the bottom of Navbar */}
+        {/* Scroll Progress Bar */}
         <motion.div 
           className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-brand-orange via-brand-blue to-brand-orange origin-left"
           style={{ scaleX }}

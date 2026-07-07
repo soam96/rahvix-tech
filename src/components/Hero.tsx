@@ -29,9 +29,9 @@ function AnimatedStat({
       return;
     }
 
-    const prefix = match[1]; // "₹" or "$"
+    const prefix = match[1];
     const target = parseFloat(match[2]);
-    const suffix = match[3]; // "%", "x", "Cr+", "M+", etc.
+    const suffix = match[3];
     const duration = 1800;
     const startTime = performance.now();
 
@@ -59,7 +59,7 @@ function AnimatedStat({
           {displayed}
         </span>
       </div>
-      <p className="text-[11px] text-slate-450 font-bold uppercase tracking-wider">{label}</p>
+      <p className="text-[11px] text-slate-455 font-bold uppercase tracking-wider">{label}</p>
     </div>
   );
 }
@@ -123,6 +123,9 @@ export default function Hero({ isLoaded = true }: HeroProps) {
     { value: "₹40Cr+", label: "ROI Generated", icon: Users, colorClass: "text-brand-orange" },
   ];
 
+  const headlineText = "Architecting Digital Monopolies for Scale.";
+  const words = headlineText.split(" ");
+
   return (
     <section
       ref={containerRef}
@@ -159,22 +162,54 @@ export default function Hero({ isLoaded = true }: HeroProps) {
             </span>
           </motion.div>
 
-          {/* Heading */}
+          {/* Heading - Cinematic Word Stagger */}
           <motion.h1
-            initial={{ opacity: 0, y: 15 }}
-            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-            transition={{ duration: 0.6, delay: 0.45 }}
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  staggerChildren: 0.08,
+                  delayChildren: 0.4,
+                }
+              }
+            }}
+            initial="hidden"
+            animate={isLoaded ? "visible" : "hidden"}
             className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.08] max-w-2xl font-sans"
           >
-            Architecting <span className="text-gradient-cyan-blue">Digital</span>{" "}
-            Monopolies for <span className="text-gradient-orange">Scale.</span>
+            {words.map((word, i) => {
+              let wordClass = "";
+              if (word.includes("Digital")) {
+                wordClass = "text-gradient-cyan-blue";
+              } else if (word.includes("Scale")) {
+                wordClass = "text-gradient-orange";
+              }
+              
+              return (
+                <span key={i} className="inline-block mr-2 sm:mr-3 overflow-hidden py-0.5 sm:py-1">
+                  <motion.span
+                    variants={{
+                      hidden: { y: "100%", opacity: 0 },
+                      visible: { 
+                        y: 0, 
+                        opacity: 1,
+                        transition: { type: "spring" as const, stiffness: 120, damping: 14 }
+                      }
+                    }}
+                    className={`inline-block ${wordClass}`}
+                  >
+                    {word}
+                  </motion.span>
+                </span>
+              );
+            })}
           </motion.h1>
 
           {/* Subtext */}
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-            transition={{ duration: 0.6, delay: 0.55 }}
+            transition={{ duration: 0.6, delay: 0.75 }}
             className="text-slate-300 text-base sm:text-lg max-w-xl mb-10 leading-relaxed font-medium"
           >
             We build next-generation automated software pipelines, elite cloud applications, and data-driven client acquisition systems.
@@ -184,7 +219,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-            transition={{ duration: 0.6, delay: 0.65 }}
+            transition={{ duration: 0.6, delay: 0.85 }}
             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
           >
             <a
@@ -215,7 +250,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
                 y: 0,
                 transition: {
                   staggerChildren: 0.12,
-                  delayChildren: 0.8,
+                  delayChildren: 0.95,
                 }
               }
             }}
@@ -258,14 +293,12 @@ export default function Hero({ isLoaded = true }: HeroProps) {
               repeat: Infinity,
               duration: 6,
               ease: "easeInOut"
-            } : { duration: 0.8, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
-            // Changed aspect ratio on mobile from aspect-square to aspect-[4/5] to resolve mobile cut-off
+            } : { duration: 0.8, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
             className="w-full max-w-[440px] aspect-[4/5] sm:aspect-square rounded-3xl border border-slate-800 bg-slate-900/60 p-3 sm:p-4 shadow-2xl backdrop-blur-md relative overflow-hidden"
           >
             {/* Holographic scanner active line overlay */}
             <div className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-brand-orange via-brand-purple to-brand-teal opacity-50 z-20 animate-scanline pointer-events-none" />
 
-            {/* Changed padding to p-3 on mobile to maximize viewport area */}
             <div className="w-full h-full rounded-2xl bg-slate-950/80 border border-slate-800/80 p-3 sm:p-4 font-mono flex flex-col justify-between relative shadow-inner select-none overflow-hidden">
               {/* Window Header */}
               <div className="flex items-center justify-between pb-3 border-b border-slate-900 mb-3 sm:mb-4 shrink-0">
@@ -281,7 +314,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
               {/* Grid Lines */}
               <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:16px_16px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-25 pointer-events-none" />
 
-              {/* Core visual layout - reduced gap size on mobile to fit vertical viewport */}
+              {/* Core visual layout */}
               <div className="flex-1 flex flex-col justify-between gap-2.5 sm:gap-4 relative z-10">
                 {/* Visual Pipeline Nodes */}
                 <div className="grid grid-cols-3 gap-1.5 sm:gap-2 items-center">
@@ -313,7 +346,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
                   </div>
                 </div>
 
-                {/* Simulated Code Panel - scaled font and padding to prevent cutoff on mobile */}
+                {/* Simulated Code Panel */}
                 <div className="flex-1 bg-slate-900/40 border border-slate-850 p-2 sm:p-3 rounded-lg flex flex-col justify-between font-mono text-[8.5px] sm:text-[10px] text-slate-400 leading-relaxed overflow-hidden">
                   <div className="text-[8px] sm:text-[9.5px] space-y-0.5">
                     <p className="text-slate-500">// Initialize autonomous routing</p>
