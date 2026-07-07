@@ -1,26 +1,345 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;505;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #030712;
+  --foreground: #f8fafc;
+  --card-bg: rgba(15, 23, 42, 0.45);
+  --border-light: rgba(255, 255, 255, 0.05);
+  
+  --brand-orange: #fa5a15;
+  --brand-blue:   #3b82f6;
+  --brand-purple: #7c3aed;  /* retained for CTAs only */
+  --brand-teal:   #06b6d4;  /* retained for legacy references */
+  --brand-dark-bg: #090d16;
+  
+  --font-plus-jakarta: 'Plus Jakarta Sans', Arial, sans-serif;
+  --font-space-grotesk: 'Space Grotesk', sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-bg-dark: var(--background);
+  --color-fg-light: var(--foreground);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-blue:   var(--brand-blue);
+  --color-brand-purple: var(--brand-purple);
+  --color-brand-teal:   var(--brand-teal);
+  --color-brand-dark: var(--brand-dark-bg);
+  
+  /* Fallback aliases */
+  --color-neon-cyan: var(--brand-blue);
+  --color-neon-blue: var(--brand-blue);
+  --color-neon-gold: var(--brand-orange);
+
+  /* Explicit mid-range slate shades used in components */
+  --color-slate-350: #94a3b8;
+  --color-slate-450: #64748b;
+  
+  --font-sans: var(--font-plus-jakarta);
+  --font-mono: var(--font-space-grotesk);
+  
+  --animate-pulse-slow: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-float-slow: float-slow 12s ease-in-out infinite;
+  --animate-grid-move: grid-move 25s linear infinite;
+  --animate-glow-pulse: glow-pulse 4s infinite ease-in-out;
+  --animate-shimmer: shimmer 3s infinite linear;
+  --animate-scanline: scanline 8s linear infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.5deg);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(-0.5deg);
+  }
 }
+
+@keyframes grid-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-150%);
+  }
+  100% {
+    transform: translateX(150%);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+html, body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-plus-jakarta);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030712;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--brand-orange), var(--brand-blue));
+}
+
+/* Creative Premium Card Style (Frosted Glassmorphism Dark) */
+.creative-card {
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.creative-card:hover {
+  background: rgba(15, 23, 42, 0.65);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.12);
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.10);
+}
+
+/* Premium Ticket Card Base Styles */
+.ticket-card-base {
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.ticket-card-base:hover {
+  transform: translateY(-5px);
+}
+
+/* Category Specific Tint Gradients — two-tone: brand-orange (warm) + brand-blue (cool) */
+/* AI & Tech — cool blue anchor */
+.ticket-ai {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.06) 0%, rgba(15, 23, 42, 0.5) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  border-top: 3px solid rgba(59, 130, 246, 0.9);
+  box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.18);
+}
+.ticket-ai:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(15, 23, 42, 0.65) 100%) !important;
+  border-color: rgba(59, 130, 246, 0.45) !important;
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.2), 0 15px 40px rgba(59, 130, 246, 0.25) !important;
+}
+
+/* Development — warm orange anchor */
+.ticket-dev {
+  background: linear-gradient(135deg, rgba(250, 90, 21, 0.06) 0%, rgba(15, 23, 42, 0.5) 100%);
+  border: 1px solid rgba(250, 90, 21, 0.15);
+  border-top: 3px solid rgba(250, 90, 21, 0.9);
+  box-shadow: 0 10px 30px -10px rgba(250, 90, 21, 0.18);
+}
+.ticket-dev:hover {
+  background: linear-gradient(135deg, rgba(250, 90, 21, 0.1) 0%, rgba(15, 23, 42, 0.65) 100%) !important;
+  border-color: rgba(250, 90, 21, 0.45) !important;
+  box-shadow: 0 0 0 1px rgba(250, 90, 21, 0.2), 0 15px 40px rgba(250, 90, 21, 0.25) !important;
+}
+
+/* Marketing — cool blue anchor */
+.ticket-marketing {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.06) 0%, rgba(15, 23, 42, 0.5) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  border-top: 3px solid rgba(59, 130, 246, 0.9);
+  box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.18);
+}
+.ticket-marketing:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(15, 23, 42, 0.65) 100%) !important;
+  border-color: rgba(59, 130, 246, 0.45) !important;
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.2), 0 15px 40px rgba(59, 130, 246, 0.25) !important;
+}
+
+/* Creative — warm orange anchor */
+.ticket-creative {
+  background: linear-gradient(135deg, rgba(250, 90, 21, 0.06) 0%, rgba(15, 23, 42, 0.5) 100%);
+  border: 1px solid rgba(250, 90, 21, 0.15);
+  border-top: 3px solid rgba(250, 90, 21, 0.9);
+  box-shadow: 0 10px 30px -10px rgba(250, 90, 21, 0.18);
+}
+.ticket-creative:hover {
+  background: linear-gradient(135deg, rgba(250, 90, 21, 0.1) 0%, rgba(15, 23, 42, 0.65) 100%) !important;
+  border-color: rgba(250, 90, 21, 0.45) !important;
+  box-shadow: 0 0 0 1px rgba(250, 90, 21, 0.2), 0 15px 40px rgba(250, 90, 21, 0.25) !important;
+}
+
+/* Glow Blobs — orange (warm) + blue (cool) two-tone system */
+.glow-cyan {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.13) 0%, rgba(3,7,18,0) 70%);
+}
+
+.glow-blue {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.10) 0%, rgba(3,7,18,0) 70%);
+}
+
+.glow-gold {
+  background: radial-gradient(circle, rgba(250, 90, 21, 0.10) 0%, rgba(3,7,18,0) 70%);
+}
+
+/* Interactive Grid Background */
+.neon-grid {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Text Gradients — orange/white and blue/white pairings only */
+.text-gradient-gold-cyan {
+  background: linear-gradient(135deg, #ffffff 10%, #fa5a15 55%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-cyan-blue {
+  background: linear-gradient(135deg, #3b82f6 0%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold-blue {
+  background: linear-gradient(135deg, var(--brand-orange) 0%, var(--brand-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #ffffff 30%, var(--brand-orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-orange {
+  background: linear-gradient(135deg, #fa5a15 0%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-purple {
+  background: linear-gradient(135deg, #3b82f6 0%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Outline and focus borders — orange (warm) + blue (cool) */
+.neon-border-cyan:hover {
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.12);
+}
+
+.neon-border-blue:hover {
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.12);
+}
+
+.neon-border-gold:hover {
+  border-color: var(--brand-orange);
+  box-shadow: 0 0 20px rgba(250, 90, 21, 0.12);
+}
+
+/* Scanline visual overlay effect - Removed for light theme */
+.scanline-overlay::after {
+  display: none;
+}
+
+/* Focus styles — use brand-orange which is defined in :root */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--brand-orange);
+  box-shadow: 0 0 12px rgba(250, 90, 21, 0.3);
+}
+
+/* Tactile Noise Overlay — removed: was a fullscreen fixed paint at z-index 9999
+   with a fully-transparent SVG fill. No visual effect, but cost a full repaint
+   on every scroll tick. Element is still rendered in layout.tsx as an empty div
+   in case future CSS is applied; it no longer generates any layer. */
+.noise-bg {
+  display: none;
+}
+
+/* Print Styles for Corporate Documents Admin Panel */
+@media print {
+  body, html {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    overflow-x: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  header, footer, nav, .no-print, .admin-sidebar, .admin-controls, .interactive-bg, canvas, button {
+    display: none !important;
+  }
+  
+  .print-area {
+    display: block !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 12mm 15mm !important;
+    box-sizing: border-box !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+  }
+  
+  @page {
+    size: A4;
+    margin: 0;
+  }
+}
+
