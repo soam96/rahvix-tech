@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Lenis from "lenis";
 import LoadingScreen from "@/components/LoadingScreen";
 import Navbar from "@/components/Navbar";
 import InteractiveBackground from "@/components/InteractiveBackground";
@@ -15,8 +16,8 @@ import Footer from "@/components/Footer";
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // Lock scroll during loading
   useEffect(() => {
-    // Disable scrolling while loader is active
     if (!isLoaded) {
       document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
@@ -27,6 +28,28 @@ export default function Home() {
     return () => {
       document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
+    };
+  }, [isLoaded]);
+
+  // Initialize Lenis smooth scrolling after the loader completes
+  useEffect(() => {
+    if (!isLoaded) return;
+
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    const rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
     };
   }, [isLoaded]);
 

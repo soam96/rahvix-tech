@@ -107,7 +107,6 @@ html, body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-plus-jakarta);
-  scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
@@ -155,6 +154,20 @@ html, body {
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
+}
+
+/* Mobile Performance Overrides: Disable heavy blurs on small screens */
+@media (max-width: 768px) {
+  .creative-card, .ticket-card-base {
+    backdrop-filter: none;
+    background: rgba(15, 23, 42, 0.90);
+  }
+}
+
+/* GPU Acceleration utility for heavy animated elements */
+.gpu-accelerate {
+  will-change: transform, opacity;
+  transform: translateZ(0);
 }
 
 .ticket-card-base:hover {

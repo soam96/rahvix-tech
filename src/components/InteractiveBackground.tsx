@@ -34,8 +34,10 @@ export default function InteractiveBackground() {
     const isMobileDevice = window.innerWidth < 768;
     
     // Performance optimized limits based on device screens
-    const pathCount = isMobileDevice ? 5 : 14; 
-    const particleCount = isMobileDevice ? 12 : 30;
+    const pathCount = isMobileDevice ? 2 : 10; 
+    const particleCount = isMobileDevice ? 5 : 15;
+
+    let cachedGradient: CanvasGradient | null = null;
 
     interface Particle {
       x: number;
@@ -57,6 +59,15 @@ export default function InteractiveBackground() {
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      
+      cachedGradient = ctx.createRadialGradient(
+        canvas.width * 0.7, canvas.height * 0.2, 0,
+        canvas.width * 0.7, canvas.height * 0.2, canvas.width * 0.6
+      );
+      cachedGradient.addColorStop(0, "rgba(250, 90, 21, 0.03)"); // Orange
+      cachedGradient.addColorStop(0.5, "rgba(59, 130, 246, 0.02)"); // Blue
+      cachedGradient.addColorStop(1, "rgba(3, 7, 18, 0)");
+      
       generatePaths();
       generateParticles();
     };
@@ -192,16 +203,11 @@ export default function InteractiveBackground() {
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Radial background glow blobs (Soft and transparent)
-      const grad1 = ctx.createRadialGradient(
-        canvas.width * 0.7, canvas.height * 0.2, 0,
-        canvas.width * 0.7, canvas.height * 0.2, canvas.width * 0.6
-      );
-      grad1.addColorStop(0, "rgba(250, 90, 21, 0.03)"); // Orange
-      grad1.addColorStop(0.5, "rgba(59, 130, 246, 0.02)"); // Blue
-      grad1.addColorStop(1, "rgba(3, 7, 18, 0)");
-      ctx.fillStyle = grad1;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // Radial background glow blobs (cached)
+      if (cachedGradient) {
+        ctx.fillStyle = cachedGradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
 
       // Draw & Update Particles
       particles.forEach((p) => {

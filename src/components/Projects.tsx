@@ -271,7 +271,7 @@ export default function Projects() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-xl">
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-800 bg-slate-950/60 backdrop-blur-md w-fit mb-4 shadow-sm">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-800 bg-slate-950/80 md:bg-slate-950/60 md:backdrop-blur-md w-fit mb-4 shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-teal animate-ping" />
               <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
                 Case Studies

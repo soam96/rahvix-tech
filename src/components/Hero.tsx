@@ -84,7 +84,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
   const rafRef = useRef<number | null>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
+    if (isMobile || !containerRef.current) return;
     if (rafRef.current) return;
 
     rafRef.current = requestAnimationFrame(() => {
@@ -256,7 +256,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
             }}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
-            className="mt-16 p-6 sm:p-8 rounded-2xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-md grid grid-cols-1 sm:grid-cols-3 gap-8 w-full max-w-3xl lg:mx-0 mx-auto font-mono"
+            className="mt-16 p-6 sm:p-8 rounded-2xl border border-slate-800/80 bg-slate-950/80 md:bg-slate-950/40 md:backdrop-blur-md grid grid-cols-1 sm:grid-cols-3 gap-8 w-full max-w-3xl lg:mx-0 mx-auto font-mono"
           >
             {stats.map((stat) => (
               <motion.div

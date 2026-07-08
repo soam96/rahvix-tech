@@ -33,7 +33,7 @@ function StepCard({
     <motion.div
       initial={{ opacity: 0, x: slideFromLeft ? -50 : 50, scale: 0.95 }}
       whileInView={{ opacity: 1, x: 0, scale: 1 }}
-      viewport={{ once: false, margin: "-60px" }}
+      viewport={{ once: true, margin: "-60px" }}
       transition={{ type: "spring", stiffness: isMobile ? 80 : 90, damping: 14 }}
       className="creative-card p-6 rounded-2xl w-full max-w-[420px] text-left"
     >
@@ -116,7 +116,7 @@ export default function Process() {
       <div className="max-w-7xl mx-auto w-full">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-24">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-800 bg-slate-950/60 backdrop-blur-md w-fit mb-4 shadow-sm">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-800 bg-slate-950/80 md:bg-slate-950/60 md:backdrop-blur-md w-fit mb-4 shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-ping" />
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
               Roadmap
@@ -171,7 +171,7 @@ export default function Process() {
                     <motion.div
                       initial={{ scale: 0.5, rotate: -30, opacity: 0 }}
                       whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
-                      viewport={{ once: false, margin: "-60px" }}
+                      viewport={{ once: true, margin: "-60px" }}
                       transition={{ type: "spring", stiffness: 200, damping: 12 }}
                       whileHover={{ scale: 1.15 }}
                       className="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center shadow-sm cursor-pointer hover:border-slate-700 group"

@@ -45,7 +45,7 @@ export default function About() {
       <div className="max-w-7xl mx-auto w-full">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-800 bg-slate-950/60 backdrop-blur-md w-fit mb-4 shadow-sm">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-800 bg-slate-950/80 md:bg-slate-950/60 md:backdrop-blur-md w-fit mb-4 shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-ping" />
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
               Who We Are

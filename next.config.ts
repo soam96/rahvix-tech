@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Transpile ESM-only packages so Next.js SSR can handle them
+  transpilePackages: ["lenis"],
   images: {
     // Serve modern AVIF/WebP formats automatically — saves 30–50% bandwidth vs JPEG/PNG
     formats: ["image/avif", "image/webp"],

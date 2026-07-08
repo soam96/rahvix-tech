@@ -100,7 +100,7 @@ function ServiceCard({ service, category, index }: ServiceCardProps) {
   const [rotateY, setRotateY] = useState(0);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (isMobile || !cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     
     const x = e.clientX - rect.left;
@@ -214,7 +214,7 @@ function ServiceCard({ service, category, index }: ServiceCardProps) {
       variants={cardVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, margin: "-40px" }}
+      viewport={{ once: true, margin: "-40px" }}
       className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-[420px]"
     >
       <Link href={`/services/${service.id}`} className="block w-full h-full">
