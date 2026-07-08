@@ -50,12 +50,6 @@ export default function InteractiveBackground() {
 
     let particles: Particle[] = [];
     
-    const mouse = {
-      x: -1000,
-      y: -1000,
-      radius: isMobileDevice ? 100 : 150,
-    };
-
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -70,16 +64,6 @@ export default function InteractiveBackground() {
       
       generatePaths();
       generateParticles();
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    };
-
-    const handleMouseLeave = () => {
-      mouse.x = -1000;
-      mouse.y = -1000;
     };
 
     // Helper to generate a path with 90-degree turns (orthogonal)
@@ -177,27 +161,7 @@ export default function InteractiveBackground() {
       };
     };
 
-    const getDistanceToSegment = (p: Point, a: Point, b: Point): number => {
-      const l2 = (a.x - b.x) ** 2 + (a.y - b.y) ** 2;
-      if (l2 === 0) return Math.sqrt((p.x - a.x) ** 2 + (p.y - a.y) ** 2);
-      
-      let t = ((p.x - a.x) * (b.x - a.x) + (p.y - a.y) * (b.y - a.y)) / l2;
-      t = Math.max(0, Math.min(1, t));
-      
-      return Math.sqrt(
-        (p.x - (a.x + t * (b.x - a.x))) ** 2 +
-        (p.y - (a.y + t * (b.y - a.y))) ** 2
-      );
-    };
 
-    const getDistanceToPath = (mousePoint: Point, points: Point[]): number => {
-      let minDistance = Infinity;
-      for (let i = 0; i < points.length - 1; i++) {
-        const dist = getDistanceToSegment(mousePoint, points[i], points[i + 1]);
-        if (dist < minDistance) minDistance = dist;
-      }
-      return minDistance;
-    };
 
     // Draw frame call
     const draw = () => {
@@ -223,22 +187,6 @@ export default function InteractiveBackground() {
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = p.color.replace("0.12", "0.35");
         ctx.fill();
-
-        // Connect to mouse (only on desktop to save mobile CPU cycles)
-        if (!isMobileDevice && mouse.x > -1000) {
-          const dx = mouse.x - p.x;
-          const dy = mouse.y - p.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
-            const alpha = (1 - dist / 150) * 0.12;
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = p.color.replace("0.12", String(alpha));
-            ctx.lineWidth = 0.6;
-            ctx.stroke();
-          }
-        }
       });
 
       // Connect particles to each other (only on desktop, too expensive for mobile)
@@ -265,13 +213,6 @@ export default function InteractiveBackground() {
 
       // Draw circuit paths
       paths.forEach((path) => {
-        let mouseInfluence = 1;
-        if (mouse.x > -1000) {
-          const dist = getDistanceToPath(mouse, path.points);
-          if (dist < mouse.radius) {
-            mouseInfluence = 1 + (1 - dist / mouse.radius) * 3;
-          }
-        }
 
         // Draw the trace line
         ctx.beginPath();
@@ -280,11 +221,8 @@ export default function InteractiveBackground() {
           ctx.lineTo(path.points[i].x, path.points[i].y);
         }
         
-        ctx.strokeStyle = path.color.replace(
-          "0.02", 
-          String(Math.min(0.15, 0.02 * mouseInfluence))
-        );
-        ctx.lineWidth = path.width * (mouseInfluence > 1 ? 1.1 : 1.0);
+        ctx.strokeStyle = path.color;
+        ctx.lineWidth = path.width;
         ctx.stroke();
 
         // Draw microchip corner nodes
@@ -292,10 +230,7 @@ export default function InteractiveBackground() {
           if (i === 0 || i === path.points.length - 1) {
             ctx.beginPath();
             ctx.arc(pt.x, pt.y, 1.8, 0, Math.PI * 2);
-            ctx.fillStyle = path.color.replace(
-              "0.02", 
-              String(Math.min(0.2, 0.04 * mouseInfluence))
-            );
+            ctx.fillStyle = path.color.replace("0.02", "0.04");
             ctx.fill();
           }
         });
@@ -315,7 +250,7 @@ export default function InteractiveBackground() {
         
         // Neon glow ring - disabled on mobile for extreme graphics speedup
         if (!isMobileDevice) {
-          ctx.shadowBlur = 6 * (mouseInfluence > 1 ? 1.4 : 1.0);
+          ctx.shadowBlur = 6;
           ctx.shadowColor = path.glowColor;
         }
         ctx.fillStyle = path.glowColor;
@@ -336,16 +271,12 @@ export default function InteractiveBackground() {
     };
 
     window.addEventListener("resize", handleResize);
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseout", handleMouseLeave);
 
     handleResize();
     draw();
 
     return () => {
       window.removeEventListener("resize", handleResize);
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseout", handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

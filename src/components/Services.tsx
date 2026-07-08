@@ -95,32 +95,7 @@ function ServiceCard({ service, category, index }: ServiceCardProps) {
   // Single shared hook — no per-card resize listener
   const isMobile = useIsMobile();
 
-  // Interactive 3D Tilt state
-  const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isMobile || !cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    cardRef.current.style.setProperty("--mouse-x", `${x}px`);
-    cardRef.current.style.setProperty("--mouse-y", `${y}px`);
-
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const tiltX = ((e.clientY - rect.top - centerY) / centerY) * -6;
-    const tiltY = ((e.clientX - rect.left - centerX) / centerX) * 6;
-
-    setRotateX(tiltX);
-    setRotateY(tiltY);
-  };
-
-  const handleMouseLeave = () => {
-    setRotateX(0);
-    setRotateY(0);
-  };
 
   const getVariantsForCategory = (catTitle: string, isMobileMode: boolean): Variants => {
     if (isMobileMode) {
@@ -221,18 +196,10 @@ function ServiceCard({ service, category, index }: ServiceCardProps) {
         {/* Removed infinite float animation — was heavy on CPU for many cards */}
         <motion.div
           ref={cardRef}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
           whileHover={{ 
             scale: 1.025, 
             boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 30px ${category.accentColor}35`,
             transition: { type: "spring", stiffness: 180, damping: 15 }
-          }}
-          style={{
-            rotateX: rotateX,
-            rotateY: rotateY,
-            transformPerspective: 1000,
-            transformStyle: "preserve-3d"
           }}
           className={`group relative p-7 rounded-2xl overflow-hidden transition-all duration-300 ticket-card-base ${ticketClass} cursor-pointer flex flex-col items-center text-center w-full h-full`}
         >
@@ -241,12 +208,11 @@ function ServiceCard({ service, category, index }: ServiceCardProps) {
             className="absolute top-0 left-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 pointer-events-none z-20"
           />
 
-          {/* Spotlight cursor glow overlay */}
+          {/* Static CSS-only Spotlight glow on hover */}
           <div 
             className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
             style={{
-              background: `radial-gradient(280px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${category.accentColor}30 0%, transparent 80%)`,
-              transform: "translateZ(1px)"
+              background: `radial-gradient(280px circle at center, ${category.accentColor}25 0%, transparent 80%)`
             }}
           />
 

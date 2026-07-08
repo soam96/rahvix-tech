@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import { ArrowUpRight, Play, Zap, Cpu, Award, Users } from "lucide-react";
-import { motion, useMotionValue, useSpring, useTransform, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 // Animated counter that counts up from 0 when in view
 function AnimatedStat({
@@ -71,41 +71,7 @@ interface HeroProps {
 export default function Hero({ isLoaded = true }: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Mouse tilt variables for 3D card effect
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
 
-  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 20 });
-  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 20 });
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["12deg", "-12deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-12deg", "12deg"]);
-
-  const rafRef = useRef<number | null>(null);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isMobile || !containerRef.current) return;
-    if (rafRef.current) return;
-
-    rafRef.current = requestAnimationFrame(() => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const width = rect.width;
-      const height = rect.height;
-      x.set((e.clientX - rect.left - width / 2) / width);
-      y.set((e.clientY - rect.top - height / 2) / height);
-      rafRef.current = null;
-    });
-  };
-
-  const handleMouseLeave = () => {
-    if (rafRef.current) {
-      cancelAnimationFrame(rafRef.current);
-      rafRef.current = null;
-    }
-    x.set(0);
-    y.set(0);
-  };
 
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -129,8 +95,6 @@ export default function Hero({ isLoaded = true }: HeroProps) {
   return (
     <section
       ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       className="relative min-h-screen flex items-center justify-center pt-32 pb-24 overflow-hidden px-6 bg-transparent"
     >
       {/* Background Decorative Blobs */}
@@ -276,12 +240,6 @@ export default function Hero({ isLoaded = true }: HeroProps) {
         {/* Right Column: Hero Interactive Illustration */}
         <div className="lg:col-span-5 flex justify-center w-full relative">
           <motion.div
-            style={{
-              rotateX: isMobile ? 0 : rotateX,
-              rotateY: isMobile ? 0 : rotateY,
-              transformPerspective: 1000,
-              transformStyle: "preserve-3d"
-            }}
             initial={{ opacity: 0, scale: 0.95, y: 25 }}
             animate={isLoaded 
               ? (isMobile 
