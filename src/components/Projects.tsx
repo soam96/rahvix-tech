@@ -179,7 +179,7 @@ export default function Projects() {
                 transition={{ type: "spring", stiffness: 100, damping: 12, delay: i * 0.1 }}
                 className="w-full rounded-t bg-gradient-to-t from-brand-orange/30 to-brand-blue/80 border border-brand-blue/30"
               />
-              <span className="text-[8px] font-mono text-slate-400 font-semibold">M{i+1}</span>
+              <span className="text-[8px] font-mono text-slate-500 font-semibold">M{i+1}</span>
             </div>
           ))}
         </div>
@@ -237,7 +237,7 @@ export default function Projects() {
               duration: 1.2 + (i % 3) * 0.2,
               ease: "easeInOut",
             }}
-            className="w-1 rounded-full bg-gradient-to-t from-brand-orange/40 to-brand-blue/80 border-t border-slate-800/60"
+            className="w-1 rounded-full bg-gradient-to-t from-brand-orange/40 to-brand-blue/80 border-t border-slate-200/60"
             style={{ height: h * 0.8 }}
           />
         ))}
@@ -271,13 +271,13 @@ export default function Projects() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-xl">
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-800 bg-slate-950/80 md:bg-slate-950/60 md:backdrop-blur-md w-fit mb-4 shadow-sm">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-200 bg-slate-50/80 md:bg-slate-50/60 md:backdrop-blur-md w-fit mb-4 shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-teal animate-ping" />
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
+              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-mono">
                 Case Studies
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900">
               Proven Metrics. <br />
               High-Ticket Results.
             </h2>
@@ -287,14 +287,14 @@ export default function Projects() {
           <div className="flex items-center gap-3">
             <button
               onClick={handlePrev}
-              className="p-3 rounded-lg border border-slate-800 bg-slate-900 hover:bg-slate-850 hover:border-slate-700 text-slate-300 hover:text-white shadow-md transition-all cursor-pointer"
+              className="p-3 rounded-lg border border-slate-200 bg-white hover:bg-slate-850 hover:border-slate-300 text-slate-600 hover:text-slate-900 shadow-md transition-all cursor-pointer"
               aria-label="Previous project"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
             <button
               onClick={handleNext}
-              className="p-3 rounded-lg border border-slate-800 bg-slate-900 hover:bg-slate-850 hover:border-slate-700 text-slate-300 hover:text-white shadow-md transition-all cursor-pointer"
+              className="p-3 rounded-lg border border-slate-200 bg-white hover:bg-slate-850 hover:border-slate-300 text-slate-600 hover:text-slate-900 shadow-md transition-all cursor-pointer"
               aria-label="Next project"
             >
               <ArrowRight className="w-5 h-5" />
@@ -332,15 +332,15 @@ export default function Projects() {
               {/* Left Side: Project graphics mock */}
               <div className="lg:col-span-6 flex justify-center order-2 lg:order-1">
                 <div
-                  className={`w-full aspect-[4/3] rounded-2xl border border-slate-800 p-6 flex flex-col justify-between shadow-lg bg-gradient-to-tr ${currentProject.gradient} relative overflow-hidden`}
+                  className={`w-full aspect-[4/3] rounded-2xl border border-slate-200 p-6 flex flex-col justify-between shadow-lg bg-gradient-to-tr ${currentProject.gradient} relative overflow-hidden`}
                 >
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-slate-950/20 filter" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-slate-50/20 filter" />
                   <div className="flex items-center justify-between relative z-10">
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-lg bg-slate-950 border border-slate-800 flex items-center justify-center shadow-sm">
-                        <IconComponent className="w-4 h-4 text-slate-300" />
+                      <div className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center shadow-sm">
+                        <IconComponent className="w-4 h-4 text-slate-600" />
                       </div>
-                      <span className="text-xs font-mono font-bold text-slate-300">{currentProject.category}</span>
+                      <span className="text-xs font-mono font-bold text-slate-600">{currentProject.category}</span>
                     </div>
                     <div className="flex gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-slate-700" />
@@ -351,8 +351,8 @@ export default function Projects() {
                   <div className="flex justify-center items-center w-full">
                     {renderProjectMockup(currentIndex)}
                   </div>
-                  <div className="flex justify-between border-t border-slate-800/60 pt-4 relative z-10">
-                    <div className="flex items-center gap-1.5 text-xs text-slate-400 font-mono font-bold">
+                  <div className="flex justify-between border-t border-slate-200/60 pt-4 relative z-10">
+                    <div className="flex items-center gap-1.5 text-xs text-slate-500 font-mono font-bold">
                       <Shield className="w-3.5 h-3.5 text-brand-blue" />
                       <span>Certified Audit</span>
                     </div>
@@ -368,20 +368,20 @@ export default function Projects() {
                 <span className="text-xs font-mono font-extrabold text-brand-blue uppercase tracking-widest mb-3">
                   {currentProject.category}
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-4">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-4">
                   {currentProject.title}
                 </h3>
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 font-medium">
+                <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6 font-medium">
                   {currentProject.desc}
                 </p>
-                <div className="grid grid-cols-2 gap-4 bg-slate-900/40 border border-slate-800/80 p-4 rounded-xl mb-6 shadow-sm">
+                <div className="grid grid-cols-2 gap-4 bg-white/40 border border-slate-200/80 p-4 rounded-xl mb-6 shadow-sm">
                   <div>
                     <span className="text-[9px] text-slate-500 font-extrabold uppercase tracking-widest">Impact Metric</span>
-                    <p className="text-sm font-extrabold text-white mt-1 font-mono">{currentProject.metrics[0]}</p>
+                    <p className="text-sm font-extrabold text-slate-900 mt-1 font-mono">{currentProject.metrics[0]}</p>
                   </div>
                   <div>
                     <span className="text-[9px] text-slate-500 font-extrabold uppercase tracking-widest">Efficiency Metric</span>
-                    <p className="text-sm font-extrabold text-white mt-1 font-mono">{currentProject.metrics[1]}</p>
+                    <p className="text-sm font-extrabold text-slate-900 mt-1 font-mono">{currentProject.metrics[1]}</p>
                   </div>
                 </div>
                 <div className="mb-6 py-2 px-3.5 border border-brand-orange/25 bg-brand-orange/8 w-fit rounded-lg flex items-center gap-2">
@@ -392,7 +392,7 @@ export default function Projects() {
                   {currentProject.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2.5 py-1 rounded bg-slate-900/60 border border-slate-850 text-[10px] font-bold text-slate-350 font-mono shadow-sm"
+                      className="px-2.5 py-1 rounded bg-white/60 border border-slate-850 text-[10px] font-bold text-slate-600 font-mono shadow-sm"
                     >
                       {tag}
                     </span>
@@ -416,7 +416,7 @@ export default function Projects() {
               className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                 index === currentIndex
                   ? "bg-brand-teal w-6"
-                  : "bg-slate-800 hover:bg-slate-700 w-2"
+                  : "bg-slate-100 hover:bg-slate-700 w-2"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />

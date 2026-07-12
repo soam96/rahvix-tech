@@ -40,8 +40,8 @@ function StepCard({
       <span className={`font-mono text-xs font-bold uppercase tracking-wider ${step.colorClass}`}>
         Step {step.num}
       </span>
-      <h3 className="text-lg font-bold text-white mt-1.5 mb-2">{step.title}</h3>
-      <p className="text-slate-300 text-sm leading-relaxed font-medium">{step.desc}</p>
+      <h3 className="text-lg font-bold text-slate-900 mt-1.5 mb-2">{step.title}</h3>
+      <p className="text-slate-600 text-sm leading-relaxed font-medium">{step.desc}</p>
     </motion.div>
   );
 }
@@ -116,9 +116,9 @@ export default function Process() {
       <div className="max-w-7xl mx-auto w-full">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-24">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-800 bg-slate-950/80 md:bg-slate-950/60 md:backdrop-blur-md w-fit mb-4 shadow-sm">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-200 bg-slate-50/80 md:bg-slate-50/60 md:backdrop-blur-md w-fit mb-4 shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-ping" />
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
+            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-mono">
               Roadmap
             </span>
           </div>
@@ -128,7 +128,7 @@ export default function Process() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-6"
           >
             The Automated Lifecycle
           </motion.h2>
@@ -138,7 +138,7 @@ export default function Process() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-medium"
+            className="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-medium"
           >
             An optimized workflow engineered to transition your operations from raw blueprints to automated, hyper-performing digital products.
           </motion.p>
@@ -147,7 +147,7 @@ export default function Process() {
         {/* Timeline Container */}
         <div className="relative max-w-5xl mx-auto">
           {/* Background track line */}
-          <div className="absolute left-5 md:left-1/2 top-0 bottom-0 w-[2px] bg-slate-800 -translate-x-1/2 z-0" />
+          <div className="absolute left-5 md:left-1/2 top-0 bottom-0 w-[2px] bg-slate-100 -translate-x-1/2 z-0" />
           
           {/* Glowing scroll-linked active line */}
           <motion.div
@@ -174,11 +174,11 @@ export default function Process() {
                       viewport={{ once: true, margin: "-60px" }}
                       transition={{ type: "spring", stiffness: 200, damping: 12 }}
                       whileHover={{ scale: 1.15 }}
-                      className="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center shadow-sm cursor-pointer hover:border-slate-700 group"
+                      className="w-9 h-9 rounded-full bg-white border border-slate-200 flex items-center justify-center shadow-sm cursor-pointer hover:border-slate-300 group"
                       style={{ boxShadow: `0 4px 15px rgba(0,0,0,0.4), 0 0 12px ${step.shadowColor}` }}
                       title={step.title}
                     >
-                      <IconComponent className={`w-4 h-4 text-slate-400 group-hover:${step.colorClass} transition-colors`} />
+                      <IconComponent className={`w-4 h-4 text-slate-500 group-hover:${step.colorClass} transition-colors`} />
                     </motion.div>
                   </div>
 

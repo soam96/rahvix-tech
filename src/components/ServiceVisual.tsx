@@ -19,7 +19,7 @@ export default function ServiceVisual({ serviceId, accentColor, className = "" }
     // ==========================================
     case "RT-AI-01":
       return (
-        <div className={`relative w-full h-full bg-slate-950 flex items-center justify-center overflow-hidden p-6 rounded-xl ${className}`}>
+        <div className={`relative w-full h-full bg-slate-50 flex items-center justify-center overflow-hidden p-6 rounded-xl ${className}`}>
           {/* Animated Matrix Grid */}
           <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#334155_1px,transparent_1px),linear-gradient(to_bottom,#334155_1px,transparent_1px)] bg-[size:24px_24px]" />
           
@@ -78,43 +78,43 @@ export default function ServiceVisual({ serviceId, accentColor, className = "" }
     // ==========================================
     case "RT-CRM-02":
       return (
-        <div className={`relative w-full h-full bg-slate-900 flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
+        <div className={`relative w-full h-full bg-white flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
           {/* Mockup CRM Dashboard window */}
-          <div className="w-11/12 h-5/6 bg-slate-950/80 rounded-lg border border-slate-800 flex flex-col overflow-hidden shadow-2xl">
+          <div className="w-11/12 h-5/6 bg-slate-50/80 rounded-lg border border-slate-200 flex flex-col overflow-hidden shadow-2xl">
             {/* Header */}
-            <div className="h-6 border-b border-slate-800 px-3 flex items-center justify-between bg-slate-900/50">
+            <div className="h-6 border-b border-slate-200 px-3 flex items-center justify-between bg-white/50">
               <div className="flex gap-1">
                 <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
                 <div className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
                 <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
               </div>
-              <div className="w-24 h-2 bg-slate-800 rounded-sm" />
-              <div className="w-4 h-4 rounded-full bg-slate-800" />
+              <div className="w-24 h-2 bg-slate-100 rounded-sm" />
+              <div className="w-4 h-4 rounded-full bg-slate-100" />
             </div>
             {/* Content area */}
             <div className="flex-1 flex p-2 gap-2">
               {/* Sidebar */}
               <div className="w-1/4 flex flex-col gap-1.5 border-r border-slate-900/80 pr-1.5">
-                <div className="w-full h-3 bg-slate-800 rounded-sm" />
-                <div className="w-4/5 h-2 bg-slate-900 rounded-sm" />
-                <div className="w-3/4 h-2 bg-slate-900 rounded-sm" />
-                <div className="w-2/3 h-2 bg-slate-900 rounded-sm" />
+                <div className="w-full h-3 bg-slate-100 rounded-sm" />
+                <div className="w-4/5 h-2 bg-white rounded-sm" />
+                <div className="w-3/4 h-2 bg-white rounded-sm" />
+                <div className="w-2/3 h-2 bg-white rounded-sm" />
               </div>
               {/* Analytics main view */}
               <div className="flex-1 flex flex-col gap-2">
                 {/* Stats cards */}
                 <div className="flex gap-1.5">
-                  <div className="flex-1 h-5 bg-slate-900/80 border border-slate-800 rounded-sm p-1 flex items-center justify-between">
+                  <div className="flex-1 h-5 bg-white/80 border border-slate-200 rounded-sm p-1 flex items-center justify-between">
                     <span className="text-[5px] text-slate-500">LEADS</span>
                     <span className="text-[6px] font-bold text-green-400 font-mono">+42%</span>
                   </div>
-                  <div className="flex-1 h-5 bg-slate-900/80 border border-slate-800 rounded-sm p-1 flex items-center justify-between">
+                  <div className="flex-1 h-5 bg-white/80 border border-slate-200 rounded-sm p-1 flex items-center justify-between">
                     <span className="text-[5px] text-slate-500">SALES</span>
                     <span className="text-[6px] font-bold text-cyan-400 font-mono">12.5k</span>
                   </div>
                 </div>
                 {/* Visual Area Chart */}
-                <div className="flex-1 border border-slate-800/80 rounded-sm bg-slate-900/30 p-1.5 relative overflow-hidden flex items-end">
+                <div className="flex-1 border border-slate-200/80 rounded-sm bg-white/30 p-1.5 relative overflow-hidden flex items-end">
                   <svg className="w-full h-full" viewBox="0 0 120 40">
                     <defs>
                       <linearGradient id="crmChartGrad" x1="0" y1="0" x2="0" y2="1">
@@ -146,15 +146,15 @@ export default function ServiceVisual({ serviceId, accentColor, className = "" }
     // ==========================================
     case "RT-ENT-03":
       return (
-        <div className={`relative w-full h-full bg-slate-950 flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
+        <div className={`relative w-full h-full bg-slate-50 flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
           {/* Server Rack visual */}
-          <div className="w-2/3 h-5/6 bg-slate-900 border border-slate-800 rounded-lg flex flex-col p-2.5 gap-2 relative shadow-2xl">
+          <div className="w-2/3 h-5/6 bg-white border border-slate-200 rounded-lg flex flex-col p-2.5 gap-2 relative shadow-2xl">
             {/* Blinking server plates */}
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="h-6 border border-slate-800 rounded bg-slate-950/80 px-2 flex items-center justify-between">
+              <div key={i} className="h-6 border border-slate-200 rounded bg-slate-50/80 px-2 flex items-center justify-between">
                 <div className="flex gap-1.5 items-center">
-                  <div className="w-1.5 h-1.5 bg-slate-800 rounded-sm" />
-                  <div className="w-10 h-1 bg-slate-900 rounded-sm" />
+                  <div className="w-1.5 h-1.5 bg-slate-100 rounded-sm" />
+                  <div className="w-10 h-1 bg-white rounded-sm" />
                 </div>
                 <div className="flex gap-1">
                   <motion.div 
@@ -171,10 +171,10 @@ export default function ServiceVisual({ serviceId, accentColor, className = "" }
               </div>
             ))}
             {/* Glass security emblem overlay */}
-            <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[1.5px] flex items-center justify-center">
+            <div className="absolute inset-0 bg-slate-50/40 backdrop-blur-[1.5px] flex items-center justify-center">
               <motion.div 
                 whileHover={{ scale: 1.05 }}
-                className="w-14 h-14 rounded-full border border-slate-700 bg-slate-900/90 shadow-xl flex items-center justify-center"
+                className="w-14 h-14 rounded-full border border-slate-300 bg-white/90 shadow-xl flex items-center justify-center"
               >
                 <svg className="w-7 h-7 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -190,42 +190,42 @@ export default function ServiceVisual({ serviceId, accentColor, className = "" }
     // ==========================================
     case "RT-DEV-01":
       return (
-        <div className={`relative w-full h-full bg-slate-900 flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
+        <div className={`relative w-full h-full bg-white flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
           {/* Split IDE and browser window mockup */}
-          <div className="w-11/12 h-5/6 flex rounded-lg border border-slate-800 overflow-hidden shadow-2xl bg-slate-950">
+          <div className="w-11/12 h-5/6 flex rounded-lg border border-slate-200 overflow-hidden shadow-2xl bg-slate-50">
             {/* Code Window (Left) */}
-            <div className="w-1/2 border-r border-slate-800 flex flex-col">
-              <div className="h-5 px-2 flex items-center gap-1 border-b border-slate-900 bg-slate-950">
+            <div className="w-1/2 border-r border-slate-200 flex flex-col">
+              <div className="h-5 px-2 flex items-center gap-1 border-b border-slate-900 bg-slate-50">
                 <div className="w-1 h-1 rounded-full bg-slate-700" />
                 <span className="text-[5px] text-slate-500 font-mono">Page.tsx</span>
               </div>
               <div className="flex-1 p-2 flex flex-col gap-1 font-mono text-[4px] text-slate-500">
                 <div className="text-purple-400">import React from &apos;react&apos;;</div>
                 <div className="text-blue-400">export default function App() &#123;</div>
-                <div className="pl-2 text-slate-400">return (</div>
+                <div className="pl-2 text-slate-500">return (</div>
                 <div className="pl-4 text-green-400">&lt;div className=&quot;w-full bg-slate-50&quot;&gt;</div>
                 <div className="pl-6 text-yellow-400">&lt;Navbar logo=&#123;logo&#125; /&gt;</div>
                 <div className="pl-6 text-yellow-400">&lt;Hero title=&quot;Next-Gen&quot; /&gt;</div>
                 <div className="pl-4 text-green-400">&lt;/div&gt;</div>
-                <div className="pl-2 text-slate-400">);</div>
+                <div className="pl-2 text-slate-500">);</div>
                 <div className="text-blue-400">&#125;</div>
               </div>
             </div>
             {/* Render Window (Right) */}
-            <div className="w-1/2 flex flex-col bg-slate-900/40">
-              <div className="h-5 px-2 flex items-center gap-1 border-b border-slate-800 bg-slate-950/60 justify-between">
-                <div className="w-16 h-2 bg-slate-800 rounded-sm" />
+            <div className="w-1/2 flex flex-col bg-white/40">
+              <div className="h-5 px-2 flex items-center gap-1 border-b border-slate-200 bg-slate-50/60 justify-between">
+                <div className="w-16 h-2 bg-slate-100 rounded-sm" />
                 <div className="w-4 h-2 bg-green-500/20 rounded-[2px] flex items-center justify-center">
                   <span className="text-[4px] text-green-400 font-bold">100</span>
                 </div>
               </div>
               <div className="flex-1 p-2 flex flex-col gap-2">
-                <div className="w-full h-3 bg-slate-800/80 rounded-[2px] flex items-center px-1">
+                <div className="w-full h-3 bg-slate-100/80 rounded-[2px] flex items-center px-1">
                   <div className="w-4 h-1 bg-slate-600 rounded-sm" />
                 </div>
-                <div className="flex-1 border border-slate-800/60 rounded-[2px] bg-slate-950/40 flex flex-col items-center justify-center gap-1.5 p-1">
-                  <div className="w-10 h-1 bg-slate-800 rounded-sm" />
-                  <div className="w-12 h-1 bg-slate-800 rounded-sm" />
+                <div className="flex-1 border border-slate-200/60 rounded-[2px] bg-slate-50/40 flex flex-col items-center justify-center gap-1.5 p-1">
+                  <div className="w-10 h-1 bg-slate-100 rounded-sm" />
+                  <div className="w-12 h-1 bg-slate-100 rounded-sm" />
                   <div className="w-6 h-2.5 rounded-sm" style={{ backgroundColor: accentColor }} />
                 </div>
               </div>
@@ -239,43 +239,43 @@ export default function ServiceVisual({ serviceId, accentColor, className = "" }
     // ==========================================
     case "RT-MOB-02":
       return (
-        <div className={`relative w-full h-full bg-slate-950 flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
+        <div className={`relative w-full h-full bg-slate-50 flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
           {/* Smartphone Container */}
-          <div className="w-[100px] h-[150px] border-[3px] border-slate-800 bg-slate-900 rounded-[18px] relative shadow-2xl flex flex-col overflow-hidden">
+          <div className="w-[100px] h-[150px] border-[3px] border-slate-200 bg-white rounded-[18px] relative shadow-2xl flex flex-col overflow-hidden">
             {/* Top speaker grill notch */}
-            <div className="absolute top-1 left-1/2 -translate-x-1/2 w-10 h-1.5 bg-slate-800 rounded-full z-20" />
+            <div className="absolute top-1 left-1/2 -translate-x-1/2 w-10 h-1.5 bg-slate-100 rounded-full z-20" />
             
             {/* App Screen content */}
-            <div className="flex-1 bg-slate-950 pt-4 p-2 flex flex-col gap-2 z-10">
+            <div className="flex-1 bg-slate-50 pt-4 p-2 flex flex-col gap-2 z-10">
               {/* App header */}
               <div className="flex items-center justify-between">
-                <div className="w-6 h-2.5 bg-slate-800 rounded-sm" />
-                <div className="w-3 h-3 rounded-full bg-slate-800" />
+                <div className="w-6 h-2.5 bg-slate-100 rounded-sm" />
+                <div className="w-3 h-3 rounded-full bg-slate-100" />
               </div>
               {/* Main Visual glassmorphic cards */}
-              <div className="flex-1 border border-slate-800/80 rounded-lg p-1.5 flex flex-col gap-1.5 bg-slate-900/30">
-                <div className="w-3/4 h-2 bg-slate-800 rounded-sm" />
-                <div className="w-full h-1 bg-slate-800/50 rounded-sm" />
-                <div className="w-full h-1 bg-slate-800/50 rounded-sm" />
+              <div className="flex-1 border border-slate-200/80 rounded-lg p-1.5 flex flex-col gap-1.5 bg-white/30">
+                <div className="w-3/4 h-2 bg-slate-100 rounded-sm" />
+                <div className="w-full h-1 bg-slate-100/50 rounded-sm" />
+                <div className="w-full h-1 bg-slate-100/50 rounded-sm" />
                 
                 {/* Floating active card mockup */}
                 <motion.div 
                   animate={{ y: [0, -3, 0] }}
                   transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-                  className="h-10 border border-slate-700/60 rounded-md p-1 bg-slate-900/90 shadow-lg flex flex-col gap-1"
+                  className="h-10 border border-slate-300/60 rounded-md p-1 bg-white/90 shadow-lg flex flex-col gap-1"
                 >
                   <div className="flex items-center gap-1">
                     <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: accentColor }} />
                     <div className="w-10 h-1.5 bg-slate-700 rounded-sm" />
                   </div>
-                  <div className="w-full h-1 bg-slate-800 rounded-sm" />
-                  <div className="w-full h-1 bg-slate-800 rounded-sm" />
+                  <div className="w-full h-1 bg-slate-100 rounded-sm" />
+                  <div className="w-full h-1 bg-slate-100 rounded-sm" />
                 </motion.div>
               </div>
             </div>
             
             {/* Bottom Indicator bar */}
-            <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-slate-800 rounded-full z-20" />
+            <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-slate-100 rounded-full z-20" />
           </div>
         </div>
       );
@@ -285,18 +285,18 @@ export default function ServiceVisual({ serviceId, accentColor, className = "" }
     // ==========================================
     case "RT-SEO-01":
       return (
-        <div className={`relative w-full h-full bg-slate-900 flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
+        <div className={`relative w-full h-full bg-white flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
           {/* Vector Map concept */}
-          <div className="w-11/12 h-5/6 bg-slate-950 border border-slate-800 rounded-lg shadow-2xl relative overflow-hidden flex flex-col">
+          <div className="w-11/12 h-5/6 bg-slate-50 border border-slate-200 rounded-lg shadow-2xl relative overflow-hidden flex flex-col">
             {/* Top Search bar mockup */}
-            <div className="h-6 border-b border-slate-900 px-2 flex items-center bg-slate-900/40 gap-1.5">
+            <div className="h-6 border-b border-slate-900 px-2 flex items-center bg-white/40 gap-1.5">
               <svg className="w-3 h-3 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
               <div className="w-24 h-2 bg-slate-850 rounded-sm" />
             </div>
             {/* Map lines */}
-            <div className="flex-1 relative bg-slate-950/20">
+            <div className="flex-1 relative bg-slate-50/20">
               <svg className="absolute inset-0 w-full h-full stroke-slate-850" strokeWidth="1" fill="none">
                 <path d="M 0 30 H 240 M 0 90 H 240 M 60 0 V 140 M 180 0 V 140 M 0 10 L 240 130" />
               </svg>
@@ -311,10 +311,10 @@ export default function ServiceVisual({ serviceId, accentColor, className = "" }
                 </svg>
               </motion.div>
               {/* Rising rankings card */}
-              <div className="absolute bottom-2 left-2 border border-slate-800 bg-slate-900/90 rounded p-1 shadow-lg flex items-center gap-1.5 z-10">
+              <div className="absolute bottom-2 left-2 border border-slate-200 bg-white/90 rounded p-1 shadow-lg flex items-center gap-1.5 z-10">
                 <div className="flex flex-col">
-                  <span className="text-[4px] text-slate-400">GOOGLE MAPS</span>
-                  <span className="text-[6px] font-bold text-white font-mono">RANK #1</span>
+                  <span className="text-[4px] text-slate-500">GOOGLE MAPS</span>
+                  <span className="text-[6px] font-bold text-slate-900 font-mono">RANK #1</span>
                 </div>
                 <div className="w-5 h-3 bg-green-500/20 border border-green-500/30 rounded-sm flex items-center justify-center">
                   <span className="text-[4px] text-green-400 font-bold">+86%</span>
@@ -330,7 +330,7 @@ export default function ServiceVisual({ serviceId, accentColor, className = "" }
     // ==========================================
     case "RT-SMM-02":
       return (
-        <div className={`relative w-full h-full bg-slate-950 flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
+        <div className={`relative w-full h-full bg-slate-50 flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
           {/* Social Network Node vector representation */}
           <svg className="w-11/12 h-5/6 max-w-[240px] max-h-[140px]" viewBox="0 0 240 140" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -374,32 +374,32 @@ export default function ServiceVisual({ serviceId, accentColor, className = "" }
     // ==========================================
     case "RT-ADS-03":
       return (
-        <div className={`relative w-full h-full bg-slate-900 flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
+        <div className={`relative w-full h-full bg-white flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
           {/* Conversion Funnel diagram */}
-          <div className="w-11/12 h-5/6 border border-slate-800 bg-slate-950 rounded-lg p-3 flex flex-col justify-between shadow-2xl">
+          <div className="w-11/12 h-5/6 border border-slate-200 bg-slate-50 rounded-lg p-3 flex flex-col justify-between shadow-2xl">
             {/* Reach stat */}
             <div className="flex items-center justify-between border-b border-slate-900 pb-1">
               <span className="text-[5px] text-slate-500 font-mono">REACH FUNNEL</span>
-              <span className="text-[6px] font-bold text-slate-300 font-mono">1.2M IMPRESSIONS</span>
+              <span className="text-[6px] font-bold text-slate-600 font-mono">1.2M IMPRESSIONS</span>
             </div>
             {/* Graphic Funnel Shapes */}
             <div className="flex-1 flex flex-col items-center justify-center py-2 gap-1 relative">
               {/* Funnel Stage 1 */}
-              <div className="w-4/5 h-2.5 rounded bg-slate-900 border border-slate-850 flex items-center justify-center relative overflow-hidden">
+              <div className="w-4/5 h-2.5 rounded bg-white border border-slate-850 flex items-center justify-center relative overflow-hidden">
                 <div className="absolute inset-0 bg-orange-500/10" />
                 <span className="text-[4px] text-orange-400 font-mono font-bold">CLICK RATE - 5.8%</span>
               </div>
               {/* Arrow */}
-              <div className="w-0.5 h-1.5 bg-slate-800" />
+              <div className="w-0.5 h-1.5 bg-slate-100" />
               {/* Funnel Stage 2 */}
-              <div className="w-3/5 h-2.5 rounded bg-slate-900 border border-slate-850 flex items-center justify-center relative overflow-hidden">
+              <div className="w-3/5 h-2.5 rounded bg-white border border-slate-850 flex items-center justify-center relative overflow-hidden">
                 <div className="absolute inset-0 bg-cyan-500/10" />
                 <span className="text-[4px] text-cyan-400 font-mono font-bold">LEADS INTAKE</span>
               </div>
               {/* Arrow */}
-              <div className="w-0.5 h-1.5 bg-slate-800" />
+              <div className="w-0.5 h-1.5 bg-slate-100" />
               {/* Funnel Stage 3 */}
-              <div className="w-2/5 h-2.5 rounded bg-slate-900 border border-slate-850 flex items-center justify-center relative overflow-hidden" style={{ borderColor: accentColor }}>
+              <div className="w-2/5 h-2.5 rounded bg-white border border-slate-850 flex items-center justify-center relative overflow-hidden" style={{ borderColor: accentColor }}>
                 <div className="absolute inset-0" style={{ backgroundColor: `${accentColor}20` }} />
                 <span className="text-[4px] font-mono font-bold" style={{ color: accentColor }}>SALES CONVERSION</span>
               </div>
@@ -418,9 +418,9 @@ export default function ServiceVisual({ serviceId, accentColor, className = "" }
     // ==========================================
     case "RT-UGC-01":
       return (
-        <div className={`relative w-full h-full bg-slate-950 flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
+        <div className={`relative w-full h-full bg-slate-50 flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
           {/* Portrait camera UI mockup */}
-          <div className="w-[85px] h-[140px] border border-slate-800 rounded-md relative shadow-2xl flex flex-col justify-between p-2">
+          <div className="w-[85px] h-[140px] border border-slate-200 rounded-md relative shadow-2xl flex flex-col justify-between p-2">
             {/* Blinking REC dot */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-1">
@@ -429,12 +429,12 @@ export default function ServiceVisual({ serviceId, accentColor, className = "" }
                   transition={{ repeat: Infinity, duration: 1 }}
                   className="w-1.5 h-1.5 rounded-full bg-red-500" 
                 />
-                <span className="text-[4px] text-slate-400 font-bold font-mono">REC</span>
+                <span className="text-[4px] text-slate-500 font-bold font-mono">REC</span>
               </div>
-              <span className="text-[4px] text-slate-400 font-mono">00:14</span>
+              <span className="text-[4px] text-slate-500 font-mono">00:14</span>
             </div>
             {/* Safe zone brackets */}
-            <div className="flex-1 border border-dashed border-slate-800/80 my-2 rounded flex flex-col items-center justify-center relative">
+            <div className="flex-1 border border-dashed border-slate-200/80 my-2 rounded flex flex-col items-center justify-center relative">
               <svg className="w-10 h-6 text-rose-500/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
               </svg>
@@ -464,14 +464,14 @@ export default function ServiceVisual({ serviceId, accentColor, className = "" }
     // ==========================================
     case "RT-VID-02":
       return (
-        <div className={`relative w-full h-full bg-slate-900 flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
+        <div className={`relative w-full h-full bg-white flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
           {/* Cinema camera Director monitor frame */}
-          <div className="w-11/12 h-5/6 bg-slate-950 border border-slate-800 rounded-lg p-2.5 flex flex-col justify-between shadow-2xl relative">
+          <div className="w-11/12 h-5/6 bg-slate-50 border border-slate-200 rounded-lg p-2.5 flex flex-col justify-between shadow-2xl relative">
             {/* Screen layout with letterbox film strip */}
-            <div className="flex-1 border border-slate-900 flex flex-col justify-between relative overflow-hidden bg-slate-900/10">
+            <div className="flex-1 border border-slate-900 flex flex-col justify-between relative overflow-hidden bg-white/10">
               {/* Letterbox dark overlays */}
-              <div className="h-2.5 bg-slate-950 w-full z-10" />
-              <div className="h-2.5 bg-slate-950 w-full z-10" />
+              <div className="h-2.5 bg-slate-50 w-full z-10" />
+              <div className="h-2.5 bg-slate-50 w-full z-10" />
               {/* Focus rectangle overlay */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-16 h-8 border border-white/20 rounded relative">
@@ -497,32 +497,32 @@ export default function ServiceVisual({ serviceId, accentColor, className = "" }
     // ==========================================
     case "RT-EDT-03":
       return (
-        <div className={`relative w-full h-full bg-slate-950 flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
+        <div className={`relative w-full h-full bg-slate-50 flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
           {/* Video editing timeline layout */}
-          <div className="w-11/12 h-5/6 bg-slate-900 border border-slate-800 rounded-lg p-2 flex flex-col gap-1.5 shadow-2xl">
+          <div className="w-11/12 h-5/6 bg-white border border-slate-200 rounded-lg p-2 flex flex-col gap-1.5 shadow-2xl">
             {/* Timeline Header */}
-            <div className="h-4 border-b border-slate-950 px-1.5 flex items-center justify-between text-[4.5px] text-slate-400 font-mono">
+            <div className="h-4 border-b border-slate-950 px-1.5 flex items-center justify-between text-[4.5px] text-slate-500 font-mono">
               <span>00:04:12:00</span>
               <div className="flex gap-1.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                <div className="w-1.5 h-1.5 rounded-full bg-slate-800" />
+                <div className="w-1.5 h-1.5 rounded-full bg-slate-100" />
               </div>
             </div>
             {/* Tracks */}
             <div className="flex-1 flex flex-col gap-1 relative">
               {/* Video Track 1 */}
-              <div className="h-4 bg-slate-950/80 rounded flex items-center px-1 border-l-[3px] border-violet-500 overflow-hidden">
+              <div className="h-4 bg-slate-50/80 rounded flex items-center px-1 border-l-[3px] border-violet-500 overflow-hidden">
                 <div className="w-2/3 h-2 bg-violet-600/30 rounded-sm" />
-                <div className="w-[2px] h-3 bg-slate-800 mx-1" />
+                <div className="w-[2px] h-3 bg-slate-100 mx-1" />
                 <div className="w-1/4 h-2 bg-violet-600/30 rounded-sm" />
               </div>
               {/* Video Track 2 */}
-              <div className="h-4 bg-slate-950/80 rounded flex items-center px-1 border-l-[3px] border-cyan-500 overflow-hidden">
+              <div className="h-4 bg-slate-50/80 rounded flex items-center px-1 border-l-[3px] border-cyan-500 overflow-hidden">
                 <div className="w-1/3 h-2 bg-cyan-600/30 rounded-sm" />
                 <div className="w-1/2 h-2 bg-cyan-600/30 rounded-sm ml-1" />
               </div>
               {/* Audio Track 1 */}
-              <div className="h-4 bg-slate-950/80 rounded flex items-center px-1 border-l-[3px] border-green-500 overflow-hidden">
+              <div className="h-4 bg-slate-50/80 rounded flex items-center px-1 border-l-[3px] border-green-500 overflow-hidden">
                 {/* Wavy waveforms schematic */}
                 <div className="w-full flex gap-0.5 justify-center items-center h-2 opacity-50">
                   {[...Array(14)].map((_, i) => (
@@ -546,9 +546,9 @@ export default function ServiceVisual({ serviceId, accentColor, className = "" }
     // ==========================================
     case "RT-BRN-04":
       return (
-        <div className={`relative w-full h-full bg-slate-900 flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
+        <div className={`relative w-full h-full bg-white flex items-center justify-center overflow-hidden p-4 rounded-xl ${className}`}>
           {/* Blueprint style Logo drafting layout */}
-          <div className="w-11/12 h-5/6 border border-slate-850/80 bg-slate-950 rounded-lg p-3 flex flex-col justify-between shadow-2xl relative">
+          <div className="w-11/12 h-5/6 border border-slate-850/80 bg-slate-50 rounded-lg p-3 flex flex-col justify-between shadow-2xl relative">
             {/* Drafting Grid lines overlay */}
             <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#334155_1px,transparent_1px),linear-gradient(to_bottom,#334155_1px,transparent_1px)] bg-[size:10px_10px]" />
             
@@ -582,7 +582,7 @@ export default function ServiceVisual({ serviceId, accentColor, className = "" }
 
     default:
       return (
-        <div className={`relative w-full h-full bg-slate-900 rounded-xl ${className}`}>
+        <div className={`relative w-full h-full bg-white rounded-xl ${className}`}>
           <div className="absolute inset-0 bg-gradient-to-tr from-slate-950 to-slate-900" />
         </div>
       );

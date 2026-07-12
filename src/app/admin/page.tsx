@@ -349,7 +349,7 @@ export default function AdminDashboard() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-6 relative overflow-hidden select-none">
+      <div className="min-h-screen bg-slate-50 text-slate-100 flex items-center justify-center p-6 relative overflow-hidden select-none">
         {/* Decorative background blobs */}
         <div className="absolute top-[20%] left-[20%] w-[400px] h-[400px] rounded-full glow-cyan opacity-40 pointer-events-none -z-10" />
         <div className="absolute bottom-[20%] right-[20%] w-[400px] h-[400px] rounded-full glow-blue opacity-30 pointer-events-none -z-10" />
@@ -357,7 +357,7 @@ export default function AdminDashboard() {
         {/* Interactive canvas grid lines */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:24px_24px] opacity-15 pointer-events-none" />
 
-        <div className="w-full max-w-[400px] bg-slate-900/60 border border-slate-800 rounded-2xl p-6 shadow-2xl backdrop-blur-md relative overflow-hidden">
+        <div className="w-full max-w-[400px] bg-white/60 border border-slate-200 rounded-2xl p-6 shadow-2xl backdrop-blur-md relative overflow-hidden">
           {/* Top Window controls */}
           <div className="flex items-center justify-between pb-4 border-b border-slate-850 mb-6">
             <div className="flex gap-1.5">
@@ -372,8 +372,8 @@ export default function AdminDashboard() {
             <div className="w-12 h-12 rounded-xl bg-brand-orange/10 border border-brand-orange/30 flex items-center justify-center mb-4">
               <Lock className="w-5 h-5 text-brand-orange" />
             </div>
-            <h2 className="text-xl font-extrabold text-white tracking-tight">Admin Authentication</h2>
-            <p className="text-xs text-slate-400 font-mono mt-1 uppercase tracking-wider">Access Restricted to Officers</p>
+            <h2 className="text-xl font-extrabold text-slate-900 tracking-tight">Admin Authentication</h2>
+            <p className="text-xs text-slate-500 font-mono mt-1 uppercase tracking-wider">Access Restricted to Officers</p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4 font-mono text-xs">
@@ -392,7 +392,7 @@ export default function AdminDashboard() {
                 value={adminIdInput}
                 onChange={(e) => setAdminIdInput(e.target.value)}
                 placeholder="e.g. admin"
-                className="w-full bg-slate-950 border border-slate-800 focus:border-brand-blue rounded-lg p-3 text-white transition-colors duration-250 focus:outline-none placeholder-slate-700 font-sans"
+                className="w-full bg-slate-50 border border-slate-200 focus:border-brand-blue rounded-lg p-3 text-slate-900 transition-colors duration-250 focus:outline-none placeholder-slate-700 font-sans"
               />
             </div>
 
@@ -404,7 +404,7 @@ export default function AdminDashboard() {
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
                 placeholder="••••••••"
-                className="w-full bg-slate-950 border border-slate-800 focus:border-brand-blue rounded-lg p-3 text-white transition-colors duration-250 focus:outline-none placeholder-slate-700 font-sans"
+                className="w-full bg-slate-50 border border-slate-200 focus:border-brand-blue rounded-lg p-3 text-slate-900 transition-colors duration-250 focus:outline-none placeholder-slate-700 font-sans"
               />
             </div>
 
@@ -419,7 +419,7 @@ export default function AdminDashboard() {
           <div className="mt-6 border-t border-slate-850 pt-4 text-center">
             <Link
               href="/"
-              className="text-[10px] text-slate-500 hover:text-slate-300 transition-colors uppercase font-bold tracking-wider"
+              className="text-[10px] text-slate-500 hover:text-slate-600 transition-colors uppercase font-bold tracking-wider"
             >
               ← Return to Main Deck
             </Link>
@@ -430,25 +430,25 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col md:flex-row relative print:block print:bg-white print:text-black print:min-h-0">
+    <div className="min-h-screen bg-slate-50 text-slate-100 flex flex-col md:flex-row relative print:block print:bg-white print:text-black print:min-h-0">
       {/* Toast Notification */}
       {notification && (
         <div className="fixed top-6 right-6 z-[100] bg-brand-orange text-white px-5 py-3 rounded-xl shadow-lg border border-brand-orange/20 animate-fade-in flex items-center gap-2">
-          <CheckCircle className="w-5 h-5 text-white" />
+          <CheckCircle className="w-5 h-5 text-slate-900" />
           <span className="font-mono text-xs font-bold uppercase">{notification}</span>
         </div>
       )}
 
-      <aside className="w-full md:w-[480px] bg-slate-900 border-r border-slate-800 flex flex-col shrink-0 overflow-y-auto max-h-screen md:sticky md:top-0 print:hidden">
+      <aside className="w-full md:w-[480px] bg-white border-r border-slate-200 flex flex-col shrink-0 overflow-y-auto max-h-screen md:sticky md:top-0 print:hidden">
         
         {/* Sidebar Header */}
-        <div className="p-6 border-b border-slate-800 flex items-center justify-between">
+        <div className="p-6 border-b border-slate-200 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Link href="/" className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors text-slate-400 hover:text-white" title="Back to Home">
+            <Link href="/" className="p-2 rounded-lg bg-slate-100 hover:bg-slate-700 transition-colors text-slate-500 hover:text-slate-900" title="Back to Home">
               <ArrowLeft className="w-4 h-4" />
             </Link>
             <div>
-              <h1 className="text-md font-bold tracking-tight text-white flex items-center gap-2">
+              <h1 className="text-md font-bold tracking-tight text-slate-900 flex items-center gap-2">
                 Rahvix Document Generator
               </h1>
               <p className="text-[10px] font-mono text-brand-orange font-bold uppercase tracking-wider">Company Admin Portal</p>
@@ -457,11 +457,11 @@ export default function AdminDashboard() {
         </div>
 
         {/* Tab Buttons (Doc Types) */}
-        <div className="p-4 grid grid-cols-5 gap-1.5 border-b border-slate-850 bg-slate-950/40 sticky top-0 z-10 backdrop-blur-md">
+        <div className="p-4 grid grid-cols-5 gap-1.5 border-b border-slate-850 bg-slate-50/40 sticky top-0 z-10 backdrop-blur-md">
           <button 
             type="button"
             onClick={() => setDocType("quotation")}
-            className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all cursor-pointer border ${docType === "quotation" ? "bg-brand-orange border-brand-orange shadow-[0_0_12px_rgba(250,90,21,0.25)] text-white" : "bg-slate-900/40 border-slate-850 hover:bg-slate-800 hover:border-slate-700 text-slate-400 hover:text-white"}`}
+            className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all cursor-pointer border ${docType === "quotation" ? "bg-brand-orange border-brand-orange shadow-[0_0_12px_rgba(250,90,21,0.25)] text-white" : "bg-white/40 border-slate-850 hover:bg-slate-100 hover:border-slate-300 text-slate-500 hover:text-slate-900"}`}
             title="Quotation"
           >
             <FileSpreadsheet className="w-4 h-4 mb-1" />
@@ -471,7 +471,7 @@ export default function AdminDashboard() {
           <button 
             type="button"
             onClick={() => setDocType("invoice")}
-            className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all cursor-pointer border ${docType === "invoice" ? "bg-brand-orange border-brand-orange shadow-[0_0_12px_rgba(250,90,21,0.25)] text-white" : "bg-slate-900/40 border-slate-850 hover:bg-slate-800 hover:border-slate-700 text-slate-400 hover:text-white"}`}
+            className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all cursor-pointer border ${docType === "invoice" ? "bg-brand-orange border-brand-orange shadow-[0_0_12px_rgba(250,90,21,0.25)] text-white" : "bg-white/40 border-slate-850 hover:bg-slate-100 hover:border-slate-300 text-slate-500 hover:text-slate-900"}`}
             title="Tax Invoice"
           >
             <FileText className="w-4 h-4 mb-1" />
@@ -481,7 +481,7 @@ export default function AdminDashboard() {
           <button 
             type="button"
             onClick={() => setDocType("offer_letter")}
-            className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all cursor-pointer border ${docType === "offer_letter" ? "bg-brand-orange border-brand-orange shadow-[0_0_12px_rgba(250,90,21,0.25)] text-white" : "bg-slate-900/40 border-slate-850 hover:bg-slate-800 hover:border-slate-700 text-slate-400 hover:text-white"}`}
+            className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all cursor-pointer border ${docType === "offer_letter" ? "bg-brand-orange border-brand-orange shadow-[0_0_12px_rgba(250,90,21,0.25)] text-white" : "bg-white/40 border-slate-850 hover:bg-slate-100 hover:border-slate-300 text-slate-500 hover:text-slate-900"}`}
             title="Offer Letter"
           >
             <FileUser className="w-4 h-4 mb-1" />
@@ -491,7 +491,7 @@ export default function AdminDashboard() {
           <button 
             type="button"
             onClick={() => setDocType("agreement")}
-            className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all cursor-pointer border ${docType === "agreement" ? "bg-brand-orange border-brand-orange shadow-[0_0_12px_rgba(250,90,21,0.25)] text-white" : "bg-slate-900/40 border-slate-850 hover:bg-slate-800 hover:border-slate-700 text-slate-400 hover:text-white"}`}
+            className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all cursor-pointer border ${docType === "agreement" ? "bg-brand-orange border-brand-orange shadow-[0_0_12px_rgba(250,90,21,0.25)] text-white" : "bg-white/40 border-slate-850 hover:bg-slate-100 hover:border-slate-300 text-slate-500 hover:text-slate-900"}`}
             title="Service Agreement"
           >
             <FileSignature className="w-4 h-4 mb-1" />
@@ -501,7 +501,7 @@ export default function AdminDashboard() {
           <button 
             type="button"
             onClick={() => setDocType("letterhead")}
-            className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all cursor-pointer border ${docType === "letterhead" ? "bg-brand-orange border-brand-orange shadow-[0_0_12px_rgba(250,90,21,0.25)] text-white" : "bg-slate-900/40 border-slate-850 hover:bg-slate-800 hover:border-slate-700 text-slate-400 hover:text-white"}`}
+            className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all cursor-pointer border ${docType === "letterhead" ? "bg-brand-orange border-brand-orange shadow-[0_0_12px_rgba(250,90,21,0.25)] text-white" : "bg-white/40 border-slate-850 hover:bg-slate-100 hover:border-slate-300 text-slate-500 hover:text-slate-900"}`}
             title="Custom Letter"
           >
             <FileText className="w-4 h-4 mb-1" />
@@ -513,61 +513,61 @@ export default function AdminDashboard() {
         <div className="p-6 space-y-6 flex-1">
           {/* Metadata Section */}
           <div className="space-y-4">
-            <h2 className="text-xs font-bold font-mono text-slate-400 uppercase tracking-widest border-l-2 border-brand-orange pl-2">
+            <h2 className="text-xs font-bold font-mono text-slate-500 uppercase tracking-widest border-l-2 border-brand-orange pl-2">
               Document Metadata
             </h2>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-[10px] font-mono text-slate-400 mb-1">DOC NUMBER</label>
+                <label className="block text-[10px] font-mono text-slate-500 mb-1">DOC NUMBER</label>
                 <input 
                   type="text" 
                   value={formData.docNumber} 
                   onChange={e => setFormData({...formData, docNumber: e.target.value})}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                  className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                 />
               </div>
               <div>
-                <label className="block text-[10px] font-mono text-slate-400 mb-1">DATE</label>
+                <label className="block text-[10px] font-mono text-slate-500 mb-1">DATE</label>
                 <input 
                   type="date" 
                   value={formData.date} 
                   onChange={e => setFormData({...formData, date: e.target.value})}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                  className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-[10px] font-mono text-slate-400 mb-1">
+                <label className="block text-[10px] font-mono text-slate-500 mb-1">
                   {docType === "invoice" ? "DUE DATE" : "EXPIRY DATE"}
                 </label>
                 <input 
                   type="date" 
                   value={formData.dueDateOrExpiry} 
                   onChange={e => setFormData({...formData, dueDateOrExpiry: e.target.value})}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                  className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                 />
               </div>
               <div>
-                <label className="block text-[10px] font-mono text-slate-400 mb-1">TITLE ON HEADER</label>
+                <label className="block text-[10px] font-mono text-slate-500 mb-1">TITLE ON HEADER</label>
                 <input 
                   type="text" 
                   value={formData.title} 
                   onChange={e => setFormData({...formData, title: e.target.value})}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                  className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-[10px] font-mono text-slate-400 mb-1">DOCUMENT SUBJECT / REFERENCE</label>
+              <label className="block text-[10px] font-mono text-slate-500 mb-1">DOCUMENT SUBJECT / REFERENCE</label>
               <input 
                 type="text" 
                 value={formData.subject} 
                 onChange={e => setFormData({...formData, subject: e.target.value})}
-                className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                 placeholder="e.g. Development of Mobile Portal Application"
               />
             </div>
@@ -577,35 +577,35 @@ export default function AdminDashboard() {
           
           {/* QUOTATION & INVOICE CLIENT FIELDS */}
           {(docType === "quotation" || docType === "invoice" || docType === "agreement") && (
-            <div className="space-y-4 pt-4 border-t border-slate-800">
-              <h2 className="text-xs font-bold font-mono text-slate-400 uppercase tracking-widest border-l-2 border-brand-orange pl-2">
+            <div className="space-y-4 pt-4 border-t border-slate-200">
+              <h2 className="text-xs font-bold font-mono text-slate-500 uppercase tracking-widest border-l-2 border-brand-orange pl-2">
                 Client Information
               </h2>
               <div>
-                <label className="block text-[10px] font-mono text-slate-400 mb-1">CLIENT NAME</label>
+                <label className="block text-[10px] font-mono text-slate-500 mb-1">CLIENT NAME</label>
                 <input 
                   type="text" 
                   value={formData.clientName} 
                   onChange={e => setFormData({...formData, clientName: e.target.value})}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                  className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                 />
               </div>
               <div>
-                <label className="block text-[10px] font-mono text-slate-400 mb-1">CLIENT ADDRESS</label>
+                <label className="block text-[10px] font-mono text-slate-500 mb-1">CLIENT ADDRESS</label>
                 <textarea 
                   rows={2}
                   value={formData.clientAddress} 
                   onChange={e => setFormData({...formData, clientAddress: e.target.value})}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white font-sans"
+                  className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900 font-sans"
                 />
               </div>
               <div>
-                <label className="block text-[10px] font-mono text-slate-400 mb-1">CLIENT CONTACT INFO (PHONE/EMAIL)</label>
+                <label className="block text-[10px] font-mono text-slate-500 mb-1">CLIENT CONTACT INFO (PHONE/EMAIL)</label>
                 <input 
                   type="text" 
                   value={formData.clientPhoneEmail} 
                   onChange={e => setFormData({...formData, clientPhoneEmail: e.target.value})}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                  className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                 />
               </div>
             </div>
@@ -613,9 +613,9 @@ export default function AdminDashboard() {
 
           {/* LINE ITEMS FOR QUOTATION & INVOICE */}
           {(docType === "quotation" || docType === "invoice") && (
-            <div className="space-y-4 pt-4 border-t border-slate-800">
+            <div className="space-y-4 pt-4 border-t border-slate-200">
               <div className="flex items-center justify-between">
-                <h2 className="text-xs font-bold font-mono text-slate-400 uppercase tracking-widest border-l-2 border-brand-orange pl-2">
+                <h2 className="text-xs font-bold font-mono text-slate-500 uppercase tracking-widest border-l-2 border-brand-orange pl-2">
                   Line Items
                 </h2>
                 <button 
@@ -629,7 +629,7 @@ export default function AdminDashboard() {
 
               <div className="space-y-4">
                 {formData.lineItems.map((item, index) => (
-                  <div key={item.id} className="bg-slate-900/60 p-3.5 rounded-xl border border-slate-800 space-y-2 relative group">
+                  <div key={item.id} className="bg-white/60 p-3.5 rounded-xl border border-slate-200 space-y-2 relative group">
                     <button 
                       type="button"
                       onClick={() => removeLineItem(item.id)}
@@ -646,7 +646,7 @@ export default function AdminDashboard() {
                         rows={2}
                         value={item.description}
                         onChange={e => updateLineItem(item.id, "description", e.target.value)}
-                        className="w-full bg-slate-800 border border-slate-700 rounded p-1.5 text-xs text-white font-sans"
+                        className="w-full bg-slate-100 border border-slate-300 rounded p-1.5 text-xs text-slate-900 font-sans"
                       />
                     </div>
 
@@ -657,7 +657,7 @@ export default function AdminDashboard() {
                           type="number"
                           value={item.qty}
                           onChange={e => updateLineItem(item.id, "qty", parseInt(e.target.value) || 0)}
-                          className="w-full bg-slate-800 border border-slate-700 rounded p-1.5 text-xs text-white font-mono"
+                          className="w-full bg-slate-100 border border-slate-300 rounded p-1.5 text-xs text-slate-900 font-mono"
                         />
                       </div>
                       <div>
@@ -666,7 +666,7 @@ export default function AdminDashboard() {
                           type="number"
                           value={item.rate}
                           onChange={e => updateLineItem(item.id, "rate", parseFloat(e.target.value) || 0)}
-                          className="w-full bg-slate-800 border border-slate-700 rounded p-1.5 text-xs text-white font-mono"
+                          className="w-full bg-slate-100 border border-slate-300 rounded p-1.5 text-xs text-slate-900 font-mono"
                         />
                       </div>
                       <div>
@@ -675,7 +675,7 @@ export default function AdminDashboard() {
                           type="number"
                           value={item.taxRate}
                           onChange={e => updateLineItem(item.id, "taxRate", parseFloat(e.target.value) || 0)}
-                          className="w-full bg-slate-800 border border-slate-700 rounded p-1.5 text-xs text-white font-mono"
+                          className="w-full bg-slate-100 border border-slate-300 rounded p-1.5 text-xs text-slate-900 font-mono"
                         />
                       </div>
                     </div>
@@ -686,29 +686,29 @@ export default function AdminDashboard() {
               {/* Extra terms and notes */}
               <div className="space-y-3 pt-2">
                 <div>
-                  <label className="block text-[10px] font-mono text-slate-400 mb-1">PAYMENT TERMS</label>
+                  <label className="block text-[10px] font-mono text-slate-500 mb-1">PAYMENT TERMS</label>
                   <textarea 
                     rows={2}
                     value={formData.paymentTerms} 
                     onChange={e => setFormData({...formData, paymentTerms: e.target.value})}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                    className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-mono text-slate-400 mb-1">EXTRA NOTES</label>
+                  <label className="block text-[10px] font-mono text-slate-500 mb-1">EXTRA NOTES</label>
                   <textarea 
                     rows={2}
                     value={formData.notes} 
                     onChange={e => setFormData({...formData, notes: e.target.value})}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                    className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                   />
                 </div>
               </div>
 
               {/* Bank Details section for Invoice */}
               {docType === "invoice" && (
-                <div className="space-y-3 pt-4 border-t border-slate-800">
-                  <h3 className="text-[10px] font-bold font-mono text-slate-400 uppercase tracking-widest">Bank Details for Transfer</h3>
+                <div className="space-y-3 pt-4 border-t border-slate-200">
+                  <h3 className="text-[10px] font-bold font-mono text-slate-500 uppercase tracking-widest">Bank Details for Transfer</h3>
                   <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-[8px] font-mono text-slate-500 mb-0.5">BANK NAME</label>
@@ -716,7 +716,7 @@ export default function AdminDashboard() {
                         type="text" 
                         value={formData.bankDetails.bankName} 
                         onChange={e => setFormData({...formData, bankDetails: { ...formData.bankDetails, bankName: e.target.value }})}
-                        className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-xs text-white"
+                        className="w-full bg-slate-100 border border-slate-300 rounded p-2 text-xs text-slate-900"
                       />
                     </div>
                     <div>
@@ -725,7 +725,7 @@ export default function AdminDashboard() {
                         type="text" 
                         value={formData.bankDetails.accountNumber} 
                         onChange={e => setFormData({...formData, bankDetails: { ...formData.bankDetails, accountNumber: e.target.value }})}
-                        className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-xs text-white font-mono"
+                        className="w-full bg-slate-100 border border-slate-300 rounded p-2 text-xs text-slate-900 font-mono"
                       />
                     </div>
                   </div>
@@ -736,7 +736,7 @@ export default function AdminDashboard() {
                         type="text" 
                         value={formData.bankDetails.ifscCode} 
                         onChange={e => setFormData({...formData, bankDetails: { ...formData.bankDetails, ifscCode: e.target.value }})}
-                        className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-xs text-white font-mono"
+                        className="w-full bg-slate-100 border border-slate-300 rounded p-2 text-xs text-slate-900 font-mono"
                       />
                     </div>
                     <div>
@@ -745,7 +745,7 @@ export default function AdminDashboard() {
                         type="text" 
                         value={formData.bankDetails.upiId} 
                         onChange={e => setFormData({...formData, bankDetails: { ...formData.bankDetails, upiId: e.target.value }})}
-                        className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-xs text-white font-mono"
+                        className="w-full bg-slate-100 border border-slate-300 rounded p-2 text-xs text-slate-900 font-mono"
                       />
                     </div>
                   </div>
@@ -756,87 +756,87 @@ export default function AdminDashboard() {
 
           {/* OFFER LETTER FIELDS */}
           {docType === "offer_letter" && (
-            <div className="space-y-4 pt-4 border-t border-slate-800">
-              <h2 className="text-xs font-bold font-mono text-slate-400 uppercase tracking-widest border-l-2 border-brand-orange pl-2">
+            <div className="space-y-4 pt-4 border-t border-slate-200">
+              <h2 className="text-xs font-bold font-mono text-slate-500 uppercase tracking-widest border-l-2 border-brand-orange pl-2">
                 Candidate Information
               </h2>
               <div>
-                <label className="block text-[10px] font-mono text-slate-400 mb-1">CANDIDATE NAME</label>
+                <label className="block text-[10px] font-mono text-slate-500 mb-1">CANDIDATE NAME</label>
                 <input 
                   type="text" 
                   value={formData.candidateName} 
                   onChange={e => setFormData({...formData, candidateName: e.target.value})}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                  className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                 />
               </div>
               <div>
-                <label className="block text-[10px] font-mono text-slate-400 mb-1">CANDIDATE ADDRESS</label>
+                <label className="block text-[10px] font-mono text-slate-500 mb-1">CANDIDATE ADDRESS</label>
                 <textarea 
                   rows={2}
                   value={formData.candidateAddress} 
                   onChange={e => setFormData({...formData, candidateAddress: e.target.value})}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white font-sans"
+                  className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900 font-sans"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-mono text-slate-400 mb-1">JOB TITLE</label>
+                  <label className="block text-[10px] font-mono text-slate-500 mb-1">JOB TITLE</label>
                   <input 
                     type="text" 
                     value={formData.jobTitle} 
                     onChange={e => setFormData({...formData, jobTitle: e.target.value})}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                    className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-mono text-slate-400 mb-1">JOINING DATE</label>
+                  <label className="block text-[10px] font-mono text-slate-500 mb-1">JOINING DATE</label>
                   <input 
                     type="date" 
                     value={formData.joiningDate} 
                     onChange={e => setFormData({...formData, joiningDate: e.target.value})}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                    className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                   />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-mono text-slate-400 mb-1">ANNUAL CTC (₹)</label>
+                  <label className="block text-[10px] font-mono text-slate-500 mb-1">ANNUAL CTC (₹)</label>
                   <input 
                     type="text" 
                     value={formData.ctcAnnual} 
                     onChange={e => setFormData({...formData, ctcAnnual: e.target.value})}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white font-mono"
+                    className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900 font-mono"
                     placeholder="e.g. 6,00,000"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-mono text-slate-400 mb-1">PROBATION PERIOD</label>
+                  <label className="block text-[10px] font-mono text-slate-500 mb-1">PROBATION PERIOD</label>
                   <input 
                     type="text" 
                     value={formData.probationPeriod} 
                     onChange={e => setFormData({...formData, probationPeriod: e.target.value})}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                    className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                     placeholder="e.g. 6 Months"
                   />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-mono text-slate-400 mb-1">SIGNATORY NAME</label>
+                  <label className="block text-[10px] font-mono text-slate-500 mb-1">SIGNATORY NAME</label>
                   <input 
                     type="text" 
                     value={formData.signatoryName} 
                     onChange={e => setFormData({...formData, signatoryName: e.target.value})}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                    className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-mono text-slate-400 mb-1">SIGNATORY TITLE</label>
+                  <label className="block text-[10px] font-mono text-slate-500 mb-1">SIGNATORY TITLE</label>
                   <input 
                     type="text" 
                     value={formData.signatoryTitle} 
                     onChange={e => setFormData({...formData, signatoryTitle: e.target.value})}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                    className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                   />
                 </div>
               </div>
@@ -845,22 +845,22 @@ export default function AdminDashboard() {
 
           {/* SERVICE AGREEMENT FIELDS */}
           {docType === "agreement" && (
-            <div className="space-y-4 pt-4 border-t border-slate-800">
-              <h2 className="text-xs font-bold font-mono text-slate-400 uppercase tracking-widest border-l-2 border-brand-orange pl-2">
+            <div className="space-y-4 pt-4 border-t border-slate-200">
+              <h2 className="text-xs font-bold font-mono text-slate-500 uppercase tracking-widest border-l-2 border-brand-orange pl-2">
                 Agreement Scope & Milestones
               </h2>
               <div>
-                <label className="block text-[10px] font-mono text-slate-400 mb-1">SCOPE OF WORK SUMMARY</label>
+                <label className="block text-[10px] font-mono text-slate-500 mb-1">SCOPE OF WORK SUMMARY</label>
                 <textarea 
                   rows={4}
                   value={formData.scopeOfWork} 
                   onChange={e => setFormData({...formData, scopeOfWork: e.target.value})}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white font-sans"
+                  className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900 font-sans"
                 />
               </div>
 
               <div className="flex items-center justify-between">
-                <h3 className="text-[10px] font-bold font-mono text-slate-400 uppercase tracking-widest">Milestones & Payments</h3>
+                <h3 className="text-[10px] font-bold font-mono text-slate-500 uppercase tracking-widest">Milestones & Payments</h3>
                 <button 
                   type="button"
                   onClick={addMilestone}
@@ -872,7 +872,7 @@ export default function AdminDashboard() {
 
               <div className="space-y-3">
                 {formData.milestones.map((m, idx) => (
-                  <div key={m.id} className="bg-slate-900/60 p-3 rounded-lg border border-slate-800 space-y-2 relative">
+                  <div key={m.id} className="bg-white/60 p-3 rounded-lg border border-slate-200 space-y-2 relative">
                     <button 
                       type="button"
                       onClick={() => removeMilestone(m.id)}
@@ -886,7 +886,7 @@ export default function AdminDashboard() {
                       value={m.description}
                       onChange={e => updateMilestone(m.id, "description", e.target.value)}
                       placeholder="Deliverable Description"
-                      className="w-full bg-slate-800 border border-slate-700 rounded p-1.5 text-xs text-white"
+                      className="w-full bg-slate-100 border border-slate-300 rounded p-1.5 text-xs text-slate-900"
                     />
                     <div className="flex items-center gap-2">
                       <label className="text-[9px] font-mono text-slate-500">PERCENTAGE VALUE:</label>
@@ -894,9 +894,9 @@ export default function AdminDashboard() {
                         type="number"
                         value={m.percentage}
                         onChange={e => updateMilestone(m.id, "percentage", parseInt(e.target.value) || 0)}
-                        className="w-20 bg-slate-800 border border-slate-700 rounded p-1 text-xs text-white font-mono text-center"
+                        className="w-20 bg-slate-100 border border-slate-300 rounded p-1 text-xs text-slate-900 font-mono text-center"
                       />
-                      <span className="text-xs font-mono text-slate-400">%</span>
+                      <span className="text-xs font-mono text-slate-500">%</span>
                     </div>
                   </div>
                 ))}
@@ -904,30 +904,30 @@ export default function AdminDashboard() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-mono text-slate-400 mb-1">SIGNATORY (FOR RAHVIX)</label>
+                  <label className="block text-[10px] font-mono text-slate-500 mb-1">SIGNATORY (FOR RAHVIX)</label>
                   <input 
                     type="text" 
                     value={formData.signatoryName} 
                     onChange={e => setFormData({...formData, signatoryName: e.target.value})}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                    className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-mono text-slate-400 mb-1">SIGNATURE IMAGE (OPTIONAL)</label>
+                  <label className="block text-[10px] font-mono text-slate-500 mb-1">SIGNATURE IMAGE (OPTIONAL)</label>
                   <input 
                     type="file" 
                     accept="image/*"
                     onChange={handleSignatureUpload}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-400 file:mr-3 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-[10px] file:font-mono file:font-bold file:bg-brand-orange/20 file:text-brand-orange hover:file:bg-brand-orange/30 cursor-pointer"
+                    className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-500 file:mr-3 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-[10px] file:font-mono file:font-bold file:bg-brand-orange/20 file:text-brand-orange hover:file:bg-brand-orange/30 cursor-pointer"
                   />
                 </div>
                 <div className="col-span-2">
-                  <label className="block text-[10px] font-mono text-slate-400 mb-1">GOVERNING JURISDICTION</label>
+                  <label className="block text-[10px] font-mono text-slate-500 mb-1">GOVERNING JURISDICTION</label>
                   <input 
                     type="text" 
                     value={formData.governingLaw} 
                     onChange={e => setFormData({...formData, governingLaw: e.target.value})}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                    className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                   />
                 </div>
               </div>
@@ -936,64 +936,64 @@ export default function AdminDashboard() {
 
           {/* CUSTOM LETTERHEAD BODY FIELDS */}
           {docType === "letterhead" && (
-            <div className="space-y-4 pt-4 border-t border-slate-800">
-              <h2 className="text-xs font-bold font-mono text-slate-400 uppercase tracking-widest border-l-2 border-brand-orange pl-2">
+            <div className="space-y-4 pt-4 border-t border-slate-200">
+              <h2 className="text-xs font-bold font-mono text-slate-500 uppercase tracking-widest border-l-2 border-brand-orange pl-2">
                 Recipient & Letter Details
               </h2>
               <div>
-                <label className="block text-[10px] font-mono text-slate-400 mb-1">RECIPIENT / DEPT / COMPANY</label>
+                <label className="block text-[10px] font-mono text-slate-500 mb-1">RECIPIENT / DEPT / COMPANY</label>
                 <input 
                   type="text" 
                   value={formData.clientName} 
                   onChange={e => setFormData({...formData, clientName: e.target.value})}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                  className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                   placeholder="e.g. Chief Financial Officer, Alpha Labs Ltd"
                 />
               </div>
               <div>
-                <label className="block text-[10px] font-mono text-slate-400 mb-1">RECIPIENT ADDRESS (OPTIONAL)</label>
+                <label className="block text-[10px] font-mono text-slate-500 mb-1">RECIPIENT ADDRESS (OPTIONAL)</label>
                 <textarea 
                   rows={2}
                   value={formData.clientAddress} 
                   onChange={e => setFormData({...formData, clientAddress: e.target.value})}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                  className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                 />
               </div>
               <div>
-                <label className="block text-[10px] font-mono text-slate-400 mb-1">LETTER BODY CONTENT</label>
+                <label className="block text-[10px] font-mono text-slate-500 mb-1">LETTER BODY CONTENT</label>
                 <textarea 
                   rows={8}
                   value={formData.letterBody} 
                   onChange={e => setFormData({...formData, letterBody: e.target.value})}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white font-sans leading-relaxed"
+                  className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900 font-sans leading-relaxed"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-mono text-slate-400 mb-1">SIGNATORY NAME</label>
+                  <label className="block text-[10px] font-mono text-slate-500 mb-1">SIGNATORY NAME</label>
                   <input 
                     type="text" 
                     value={formData.signatoryName} 
                     onChange={e => setFormData({...formData, signatoryName: e.target.value})}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                    className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-mono text-slate-400 mb-1">SIGNATORY TITLE</label>
+                  <label className="block text-[10px] font-mono text-slate-500 mb-1">SIGNATORY TITLE</label>
                   <input 
                     type="text" 
                     value={formData.signatoryTitle} 
                     onChange={e => setFormData({...formData, signatoryTitle: e.target.value})}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-white"
+                    className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-900"
                   />
                 </div>
                 <div className="col-span-2">
-                  <label className="block text-[10px] font-mono text-slate-400 mb-1">SIGNATURE IMAGE (OPTIONAL)</label>
+                  <label className="block text-[10px] font-mono text-slate-500 mb-1">SIGNATURE IMAGE (OPTIONAL)</label>
                   <input 
                     type="file" 
                     accept="image/*"
                     onChange={handleSignatureUpload}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-400 file:mr-3 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-[10px] file:font-mono file:font-bold file:bg-brand-orange/20 file:text-brand-orange hover:file:bg-brand-orange/30 cursor-pointer"
+                    className="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-500 file:mr-3 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-[10px] file:font-mono file:font-bold file:bg-brand-orange/20 file:text-brand-orange hover:file:bg-brand-orange/30 cursor-pointer"
                   />
                 </div>
               </div>
@@ -1005,7 +1005,7 @@ export default function AdminDashboard() {
             <button 
               type="button"
               onClick={saveDraft}
-              className="w-full flex items-center justify-center gap-2 bg-slate-900/50 hover:bg-slate-800 text-slate-200 hover:text-white font-bold font-mono text-xs uppercase p-3.5 rounded-xl border border-slate-800 hover:border-slate-700 transition-all cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 bg-white/50 hover:bg-slate-100 text-slate-200 hover:text-slate-900 font-bold font-mono text-xs uppercase p-3.5 rounded-xl border border-slate-200 hover:border-slate-300 transition-all cursor-pointer"
             >
               <Save className="w-4 h-4" /> Save as Draft
             </button>
@@ -1021,19 +1021,19 @@ export default function AdminDashboard() {
           {/* Draft History Section */}
           {drafts.length > 0 && (
             <div className="space-y-3 pt-6 border-t border-slate-850">
-              <h2 className="text-xs font-bold font-mono text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+              <h2 className="text-xs font-bold font-mono text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-brand-orange" /> Saved Drafts ({drafts.length})
               </h2>
-              <div className="max-h-48 overflow-y-auto space-y-2 pr-1 border border-slate-850 p-2.5 rounded-xl bg-slate-950/40">
+              <div className="max-h-48 overflow-y-auto space-y-2 pr-1 border border-slate-850 p-2.5 rounded-xl bg-slate-50/40">
                 {drafts.map((d) => (
                   <div 
                     key={d.id} 
                     onClick={() => loadDraft(d)}
-                    className="flex items-center justify-between p-2 rounded-lg bg-slate-950 border border-slate-850 hover:border-slate-800 hover:bg-slate-900/60 transition-all cursor-pointer text-left"
+                    className="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-850 hover:border-slate-200 hover:bg-white/60 transition-all cursor-pointer text-left"
                   >
                     <div className="truncate">
-                      <p className="text-[10px] font-mono font-bold text-white truncate">{d.docNumber}</p>
-                      <p className="text-[8px] font-mono text-slate-400 uppercase">{d.type} - {d.clientName || d.candidateName || "No Name"}</p>
+                      <p className="text-[10px] font-mono font-bold text-slate-900 truncate">{d.docNumber}</p>
+                      <p className="text-[8px] font-mono text-slate-500 uppercase">{d.type} - {d.clientName || d.candidateName || "No Name"}</p>
                     </div>
                     <button 
                       type="button"
@@ -1053,7 +1053,7 @@ export default function AdminDashboard() {
       </aside>
 
       {/* Main Content - Preview Panel */}
-      <main className="flex-1 bg-slate-950/20 p-6 md:p-12 overflow-y-auto flex justify-center print:p-0 print:block print:bg-white print:w-auto">
+      <main className="flex-1 bg-slate-50/20 p-6 md:p-12 overflow-y-auto flex justify-center print:p-0 print:block print:bg-white print:w-auto">
         <div 
           ref={printRef}
           className="print-area w-full max-w-[800px] min-h-[1130px] bg-white text-slate-900 shadow-2xl rounded-sm p-[40px] flex flex-col justify-between relative border border-slate-200 select-text print:shadow-none print:border-none print:min-h-0 print:max-w-none print:w-auto print:m-0 print:p-[15mm]"
@@ -1102,7 +1102,7 @@ export default function AdminDashboard() {
                 <div className="w-16 h-1 bg-brand-orange mt-2 rounded-full" />
               </div>
               <div className="text-right">
-                <span className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Document No.</span>
+                <span className="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Document No.</span>
                 <span className="text-lg font-mono font-bold text-slate-800">{formData.docNumber}</span>
               </div>
             </div>
@@ -1113,7 +1113,7 @@ export default function AdminDashboard() {
               <div className="space-y-1">
                 {docType === "offer_letter" ? (
                   <>
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Offer Prepared For:</p>
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Offer Prepared For:</p>
                     <p className="font-black text-slate-900 text-sm">{formData.candidateName}</p>
                     {formData.candidateAddress && (
                       <p className="text-slate-600 font-medium whitespace-pre-line leading-relaxed max-w-[280px]">{formData.candidateAddress}</p>
@@ -1121,7 +1121,7 @@ export default function AdminDashboard() {
                   </>
                 ) : (
                   <>
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Billed To / Client:</p>
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Billed To / Client:</p>
                     <p className="font-black text-slate-900 text-sm">{formData.clientName}</p>
                     {formData.clientAddress && (
                       <p className="text-slate-600 font-medium whitespace-pre-line leading-relaxed max-w-[280px]">{formData.clientAddress}</p>
@@ -1164,7 +1164,7 @@ export default function AdminDashboard() {
                 <div className="rounded-xl overflow-hidden border border-slate-200">
                   <table className="w-full text-left text-xs border-collapse">
                     <thead>
-                      <tr className="bg-slate-900 text-white uppercase font-semibold text-[10px] tracking-wider">
+                      <tr className="bg-white text-slate-900 uppercase font-semibold text-[10px] tracking-wider">
                         <th className="py-3 px-4 w-12 text-center">Sr.</th>
                         <th className="py-3 px-4">Description of Services</th>
                         <th className="py-3 px-4 w-16 text-center">Qty</th>
@@ -1283,12 +1283,12 @@ export default function AdminDashboard() {
                 
                 <div className="grid grid-cols-2 gap-6 bg-slate-50 rounded-xl p-5 border border-slate-100">
                   <div>
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">1. Service Provider</p>
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">1. Service Provider</p>
                     <p className="font-black text-slate-900 text-base">Rahvix Technologies</p>
                     <p className="text-slate-600 text-xs mt-1 max-w-[200px] leading-relaxed">{DEFAULT_COMPANY_ADDRESS}</p>
                   </div>
                   <div>
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">2. Customer / Client</p>
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">2. Customer / Client</p>
                     <p className="font-black text-slate-900 text-base">{formData.clientName}</p>
                     <p className="text-slate-600 text-xs mt-1 max-w-[200px] leading-relaxed">{formData.clientAddress}</p>
                     <p className="text-slate-700 font-medium text-xs mt-2">{formData.clientPhoneEmail}</p>
@@ -1312,7 +1312,7 @@ export default function AdminDashboard() {
                     <div className="rounded-xl overflow-hidden border border-slate-200">
                       <table className="w-full text-left text-sm border-collapse">
                         <thead>
-                          <tr className="bg-slate-900 text-white uppercase font-semibold text-[10px] tracking-wider">
+                          <tr className="bg-white text-slate-900 uppercase font-semibold text-[10px] tracking-wider">
                             <th className="py-3 px-4">Phase</th>
                             <th className="py-3 px-4">Milestone Deliverable / Description</th>
                             <th className="py-3 px-4 text-center w-32">Percentage</th>
@@ -1381,7 +1381,7 @@ export default function AdminDashboard() {
             
             {/* Signature Area (Company) */}
             <div className="w-64">
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-8">Authorized Signatory</p>
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-8">Authorized Signatory</p>
               <div className="h-14 border-b-2 border-slate-900 mb-3 flex items-end">
                 {formData.signatureImage ? (
                   <img src={formData.signatureImage} alt="Signature" className="h-full object-contain mb-1" />
@@ -1397,7 +1397,7 @@ export default function AdminDashboard() {
             {/* Counter Sign for Candidate/Client OR Computer Generated Stamp */}
             {(docType === "offer_letter" || docType === "agreement") ? (
               <div className="w-64 text-right flex flex-col items-end">
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-8">
+                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-8">
                   {docType === "offer_letter" ? "Accepted By Candidate" : "Accepted By Client"}
                 </p>
                 <div className="h-12 border-b-2 border-slate-900 mb-3 flex items-end w-full">
@@ -1410,10 +1410,10 @@ export default function AdminDashboard() {
               </div>
             ) : (
               <div className="text-right flex flex-col items-end">
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Document Generated On</p>
+                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Document Generated On</p>
                 <p className="font-mono text-slate-900 font-bold mt-1 text-sm">{new Date(formData.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p>
                 <p className="text-[9px] text-brand-orange mt-2 uppercase font-bold tracking-widest bg-brand-orange/10 px-2 py-1 rounded">Valid & Legally Binding</p>
-                <p className="text-[8px] text-slate-400 uppercase tracking-widest mt-2">Computer Generated Document</p>
+                <p className="text-[8px] text-slate-500 uppercase tracking-widest mt-2">Computer Generated Document</p>
               </div>
             )}
 

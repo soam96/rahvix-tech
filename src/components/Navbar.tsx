@@ -45,7 +45,7 @@ export default function Navbar({ isLoaded = true }: NavbarProps) {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled || mobileMenuOpen
-            ? "bg-slate-950/95 border-b border-slate-900 py-4 shadow-lg backdrop-blur-md"
+            ? "bg-slate-50/95 border-b border-slate-900 py-4 shadow-lg backdrop-blur-md"
             : "bg-transparent py-6"
         }`}
       >
@@ -58,7 +58,7 @@ export default function Navbar({ isLoaded = true }: NavbarProps) {
             transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.35 }}
             className="flex items-center gap-2.5 group"
           >
-            <div className="relative w-12 h-10 rounded-lg overflow-hidden flex items-center justify-center border border-slate-800 bg-slate-950 shrink-0 shadow-md">
+            <div className="relative w-12 h-10 rounded-lg overflow-hidden flex items-center justify-center border border-slate-200 bg-slate-50 shrink-0 shadow-md">
               <Image
                 src="/logo.jpg"
                 alt="Rahvix Technologies Logo"
@@ -68,7 +68,7 @@ export default function Navbar({ isLoaded = true }: NavbarProps) {
                 priority
               />
             </div>
-            <span className="font-sans font-extrabold tracking-tight text-white transition-colors duration-300">
+            <span className="font-sans font-extrabold tracking-tight text-slate-900 transition-colors duration-300">
               Rahvix <span className="text-brand-orange">Technologies</span>
             </span>
           </motion.a>
@@ -98,7 +98,7 @@ export default function Navbar({ isLoaded = true }: NavbarProps) {
                   visible: { opacity: 1, y: 0 }
                 }}
                 transition={{ type: "spring", stiffness: 120, damping: 14 }}
-                className="relative text-sm text-slate-350 hover:text-white transition-colors duration-300 group py-1 font-mono font-bold tracking-wide focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-orange focus-visible:outline-offset-4 rounded"
+                className="relative text-sm text-slate-600 hover:text-slate-900 transition-colors duration-300 group py-1 font-mono font-bold tracking-wide focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-orange focus-visible:outline-offset-4 rounded"
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-brand-orange transition-all duration-305 group-hover:w-full" />
@@ -115,18 +115,18 @@ export default function Navbar({ isLoaded = true }: NavbarProps) {
           >
             <a
               href="#contact"
-              className="relative inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-white transition-all duration-300 rounded-lg overflow-hidden bg-brand-orange hover:bg-brand-orange/95 hover:shadow-[0_4px_15px_rgba(250,90,21,0.25)] border border-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-orange focus-visible:outline-offset-2"
+              className="relative inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-slate-900 transition-all duration-300 rounded-lg overflow-hidden bg-brand-orange hover:bg-brand-orange/95 hover:shadow-[0_4px_15px_rgba(250,90,21,0.25)] border border-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-orange focus-visible:outline-offset-2"
             >
               <span className="relative z-10 flex items-center gap-1.5 font-bold">
                 Get Started
-                <ArrowUpRight className="w-4 h-4 transition-transform duration-300 text-white" />
+                <ArrowUpRight className="w-4 h-4 transition-transform duration-300 text-slate-900" />
               </span>
             </a>
           </motion.div>
 
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden p-2 text-slate-300 hover:text-white border border-slate-800 rounded-lg bg-slate-900/60 backdrop-blur shadow-sm cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-orange"
+            className="md:hidden p-2 text-slate-600 hover:text-slate-900 border border-slate-200 rounded-lg bg-white/60 backdrop-blur shadow-sm cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-orange"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileMenuOpen}
@@ -151,7 +151,7 @@ export default function Navbar({ isLoaded = true }: NavbarProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="absolute top-full left-0 right-0 bg-slate-950/98 backdrop-blur-lg border-b border-slate-900 shadow-2xl px-6 py-8 overflow-hidden z-40 md:hidden"
+              className="absolute top-full left-0 right-0 bg-slate-50/98 backdrop-blur-lg border-b border-slate-900 shadow-2xl px-6 py-8 overflow-hidden z-40 md:hidden"
             >
               <motion.nav 
                 variants={{
@@ -179,7 +179,7 @@ export default function Navbar({ isLoaded = true }: NavbarProps) {
                     }}
                     transition={{ type: "spring", stiffness: 120, damping: 14 }}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-base font-mono font-bold text-slate-350 hover:text-brand-orange transition-colors duration-250 border-b border-slate-900 pb-2 flex items-center justify-between group"
+                    className="text-base font-mono font-bold text-slate-600 hover:text-brand-orange transition-colors duration-250 border-b border-slate-900 pb-2 flex items-center justify-between group"
                   >
                     <span>{link.name}</span>
                     <ArrowUpRight className="w-4 h-4 text-slate-600 group-hover:text-brand-orange group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
