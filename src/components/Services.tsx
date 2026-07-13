@@ -217,12 +217,12 @@ function ServiceCard({ service, category, index }: ServiceCardProps) {
           />
 
           {/* Holographic ticket label header */}
-          <div className="flex items-center justify-between w-full mb-6 font-mono text-[9px] text-slate-500 tracking-wider relative z-10">
+          <div className="flex items-center justify-between w-full mb-6 font-mono text-[9px] text-slate-450 tracking-wider relative z-10">
             <span className="flex items-center gap-1 font-bold">
               <span className={`w-1.5 h-1.5 rounded-full ${category.colorClass} animate-pulse`} />
               RT TICKET
             </span>
-            <span className="px-2 py-0.5 border border-slate-200 bg-white/80 text-slate-500 rounded font-semibold group-hover:bg-slate-100 group-hover:text-slate-200 group-hover:border-slate-300 transition-colors">
+            <span className="px-2 py-0.5 border border-slate-800 bg-slate-900/80 text-slate-400 rounded font-semibold group-hover:bg-slate-800 group-hover:text-slate-200 group-hover:border-slate-700 transition-colors">
               {service.id}
             </span>
           </div>
@@ -240,12 +240,12 @@ function ServiceCard({ service, category, index }: ServiceCardProps) {
             >
               <path d="M25,10 C45,5 85,15 90,40 C95,65 75,85 50,90 C25,95 5,80 10,50 C15,20 5,15 25,10 Z" />
             </motion.svg>
-            <IconComponent className={`relative z-10 w-5 h-5 ${category.colorClass} group-hover:text-slate-900 transition-colors duration-300`} />
+            <IconComponent className={`relative z-10 w-5 h-5 ${category.colorClass} group-hover:text-white transition-colors duration-300`} />
           </motion.div>
 
           {/* Title */}
           <h4 
-            className="text-lg font-bold text-slate-900 mb-2 transition-colors duration-350 text-center"
+            className="text-lg font-bold text-white mb-2 transition-colors duration-350 text-center"
             style={{ transform: "translateZ(20px)" }}
           >
             {service.name}
@@ -253,7 +253,7 @@ function ServiceCard({ service, category, index }: ServiceCardProps) {
 
           {/* Description */}
           <p 
-            className="text-slate-500 text-sm leading-relaxed mb-5 group-hover:text-slate-200 transition-colors duration-350 h-16 overflow-hidden font-medium text-center"
+            className="text-slate-400 text-sm leading-relaxed mb-5 group-hover:text-slate-200 transition-colors duration-350 h-16 overflow-hidden font-medium text-center"
             style={{ transform: "translateZ(10px)" }}
           >
             {service.desc}
@@ -261,7 +261,7 @@ function ServiceCard({ service, category, index }: ServiceCardProps) {
 
           {/* Service Professional Graphic */}
           <div 
-            className="w-full aspect-video rounded-xl overflow-hidden border border-slate-200/80 bg-slate-50 relative mb-5 shadow-sm group-hover:border-slate-300 transition-all duration-300 z-10 shrink-0"
+            className="w-full aspect-video rounded-xl overflow-hidden border border-slate-800/80 bg-slate-950 relative mb-5 shadow-sm group-hover:border-slate-700 transition-all duration-300 z-10 shrink-0"
             style={{ transform: "translateZ(10px)" }}
           >
             <ServiceVisual
@@ -273,14 +273,14 @@ function ServiceCard({ service, category, index }: ServiceCardProps) {
           {/* Checklist features */}
           <motion.div 
             variants={listContainerVariants}
-            className="flex flex-col gap-2 pt-4 border-t border-slate-200/60 group-hover:border-slate-300 transition-colors w-full items-center justify-center"
+            className="flex flex-col gap-2 pt-4 border-t border-slate-800/60 group-hover:border-slate-700 transition-colors w-full items-center justify-center"
             style={{ transform: "translateZ(12px)" }}
           >
             {service.features.map((feat, i) => (
               <motion.div 
                 key={i} 
                 variants={listItemVariants}
-                className="flex items-center gap-2 text-xs font-mono text-slate-500 group-hover:text-slate-200 transition-colors duration-350"
+                className="flex items-center gap-2 text-xs font-mono text-slate-400 group-hover:text-slate-200 transition-colors duration-350"
               >
                 <Check className={`w-3.5 h-3.5 ${category.colorClass} shrink-0`} />
                 <span>{feat}</span>
@@ -291,7 +291,7 @@ function ServiceCard({ service, category, index }: ServiceCardProps) {
           {/* Arrow hover indicator */}
           <motion.div 
             variants={arrowVariants}
-            className="absolute bottom-5 right-5 w-5 h-5 rounded border border-slate-200 bg-white group-hover:bg-slate-850 group-hover:border-slate-300 flex items-center justify-center transition-all duration-300"
+            className="absolute bottom-5 right-5 w-5 h-5 rounded border border-slate-800 bg-slate-900 group-hover:bg-slate-850 group-hover:border-slate-700 flex items-center justify-center transition-all duration-300"
           >
             <ArrowUpRight className={`w-3 h-3 ${category.colorClass}`} />
           </motion.div>
@@ -324,10 +324,10 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-200 bg-slate-50/60 backdrop-blur-md w-fit mb-4 shadow-sm"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-800 bg-slate-950/60 backdrop-blur-md w-fit mb-4 shadow-sm"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-ping" />
-            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-mono">
+            <span className="text-[10px] font-bold text-slate-450 uppercase tracking-widest font-mono">
               Capabilities
             </span>
           </motion.div>
@@ -337,7 +337,7 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6"
           >
             High-Impact Tech <br />
             &amp; Marketing Services
@@ -348,7 +348,7 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-medium"
+            className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-medium"
           >
             We deploy a synergistic blend of artificial intelligence, premium software engineering, and high-converting marketing campaigns to scale your operations.
           </motion.p>
@@ -360,7 +360,7 @@ export default function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-wrap items-center justify-center gap-2 mb-16 max-w-3xl mx-auto border border-slate-200 p-1.5 rounded-xl bg-white/45 backdrop-blur-md shadow-lg relative z-10"
+          className="flex flex-wrap items-center justify-center gap-2 mb-16 max-w-3xl mx-auto border border-slate-800 p-1.5 rounded-xl bg-slate-900/45 backdrop-blur-md shadow-lg relative z-10"
           role="tablist"
           aria-label="Filter services by category"
         >
@@ -375,14 +375,14 @@ export default function Services() {
               onClick={() => setActiveTab(label)}
               className={`relative px-4 py-2.5 text-xs font-mono font-bold rounded-lg transition-all duration-300 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-orange focus-visible:outline-offset-2 ${
                 activeTab === label
-                  ? "text-slate-900"
-                  : "text-slate-500 hover:text-slate-900"
+                  ? "text-white"
+                  : "text-slate-450 hover:text-white"
               }`}
             >
               {activeTab === label && (
                <motion.div
                  layoutId="active-tab"
-                 className="absolute inset-0 bg-slate-50/85 rounded-lg border border-slate-200 shadow-sm"
+                 className="absolute inset-0 bg-slate-950/85 rounded-lg border border-slate-800 shadow-sm"
                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
                />
               )}
@@ -391,7 +391,7 @@ export default function Services() {
                 <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${
                   activeTab === label
                     ? "bg-brand-orange/15 text-brand-orange"
-                    : "bg-white/60 text-slate-500"
+                    : "bg-slate-900/60 text-slate-400"
                 }`}>
                   {count}
                 </span>

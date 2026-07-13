@@ -118,10 +118,10 @@ export default function Hero({ isLoaded = true }: HeroProps) {
             initial={{ opacity: 0, y: 15 }}
             animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-200 bg-slate-50/60 backdrop-blur-md w-fit mb-6 shadow-sm"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-slate-800 bg-slate-950/60 backdrop-blur-md w-fit mb-6 shadow-sm"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-brand-teal animate-ping" />
-            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-mono">
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
               Automation &amp; Scale
             </span>
           </motion.div>
@@ -139,7 +139,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
             }}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 mb-6 leading-[1.08] max-w-2xl font-sans"
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.08] max-w-2xl font-sans"
           >
             {words.map((word, i) => {
               let wordClass = "";
@@ -174,7 +174,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
             initial={{ opacity: 0, y: 15 }}
             animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
             transition={{ duration: 0.6, delay: 0.75 }}
-            className="text-slate-600 text-base sm:text-lg max-w-xl mb-10 leading-relaxed font-medium"
+            className="text-slate-300 text-base sm:text-lg max-w-xl mb-10 leading-relaxed font-medium"
           >
             We build next-generation automated software pipelines, elite cloud applications, and data-driven client acquisition systems.
           </motion.p>
@@ -196,7 +196,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
 
             <a
               href="#services"
-              className="relative inline-flex items-center justify-center px-8 py-4 rounded-lg border border-slate-200 bg-white/60 text-slate-600 font-bold text-sm hover:bg-slate-880 hover:border-brand-teal/50 hover:text-slate-900 hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] active:scale-[0.98] transition-all duration-300 group w-full sm:w-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-teal focus-visible:outline-offset-2"
+              className="relative inline-flex items-center justify-center px-8 py-4 rounded-lg border border-slate-800 bg-slate-900/60 text-slate-300 font-bold text-sm hover:bg-slate-880 hover:border-brand-teal/50 hover:text-white hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] active:scale-[0.98] transition-all duration-300 group w-full sm:w-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-teal focus-visible:outline-offset-2"
             >
               <span className="flex items-center gap-2">
                 <Play className="w-4 h-4 text-brand-teal fill-brand-teal/20 group-hover:scale-110 transition-transform" />
@@ -220,7 +220,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
             }}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
-            className="mt-16 p-6 sm:p-8 rounded-2xl border border-slate-200/80 bg-slate-50/80 md:bg-slate-50/40 md:backdrop-blur-md grid grid-cols-1 sm:grid-cols-3 gap-8 w-full max-w-3xl lg:mx-0 mx-auto font-mono"
+            className="mt-16 p-6 sm:p-8 rounded-2xl border border-slate-800/80 bg-slate-950/80 md:bg-slate-950/40 md:backdrop-blur-md grid grid-cols-1 sm:grid-cols-3 gap-8 w-full max-w-3xl lg:mx-0 mx-auto font-mono"
           >
             {stats.map((stat) => (
               <motion.div
@@ -252,12 +252,12 @@ export default function Hero({ isLoaded = true }: HeroProps) {
               duration: 6,
               ease: "easeInOut"
             } : { duration: 0.8, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full max-w-[440px] aspect-[4/5] sm:aspect-square rounded-3xl border border-slate-200 bg-white/60 p-3 sm:p-4 shadow-2xl backdrop-blur-md relative overflow-hidden"
+            className="w-full max-w-[440px] aspect-[4/5] sm:aspect-square rounded-3xl border border-slate-800 bg-slate-900/60 p-3 sm:p-4 shadow-2xl backdrop-blur-md relative overflow-hidden"
           >
             {/* Holographic scanner active line overlay */}
             <div className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-brand-orange via-brand-purple to-brand-teal opacity-50 z-20 animate-scanline pointer-events-none" />
 
-            <div className="w-full h-full rounded-2xl bg-slate-50/80 border border-slate-200/80 p-3 sm:p-4 font-mono flex flex-col justify-between relative shadow-inner select-none overflow-hidden">
+            <div className="w-full h-full rounded-2xl bg-slate-950/80 border border-slate-800/80 p-3 sm:p-4 font-mono flex flex-col justify-between relative shadow-inner select-none overflow-hidden">
               {/* Window Header */}
               <div className="flex items-center justify-between pb-3 border-b border-slate-900 mb-3 sm:mb-4 shrink-0">
                 <div className="flex gap-1.5">
@@ -276,8 +276,8 @@ export default function Hero({ isLoaded = true }: HeroProps) {
               <div className="flex-1 flex flex-col justify-between gap-2.5 sm:gap-4 relative z-10">
                 {/* Visual Pipeline Nodes */}
                 <div className="grid grid-cols-3 gap-1.5 sm:gap-2 items-center">
-                  <div className="bg-white/60 border border-slate-850 p-2 sm:p-2.5 rounded-lg flex flex-col gap-1 items-center">
-                    <span className="text-[9px] text-slate-500 font-bold">SOURCE</span>
+                  <div className="bg-slate-900/60 border border-slate-850 p-2 sm:p-2.5 rounded-lg flex flex-col gap-1 items-center">
+                    <span className="text-[9px] text-slate-450 font-bold">SOURCE</span>
                     <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center">
                       <Cpu className="w-3.5 h-3.5 text-brand-blue" />
                     </div>
@@ -295,8 +295,8 @@ export default function Hero({ isLoaded = true }: HeroProps) {
                       </svg>
                     </div>
                   </div>
-                  <div className="bg-white/60 border border-slate-850 p-2 sm:p-2.5 rounded-lg flex flex-col gap-1 items-center">
-                    <span className="text-[9px] text-slate-500 font-bold">MODEL</span>
+                  <div className="bg-slate-900/60 border border-slate-850 p-2 sm:p-2.5 rounded-lg flex flex-col gap-1 items-center">
+                    <span className="text-[9px] text-slate-450 font-bold">MODEL</span>
                     <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-brand-orange/10 border border-brand-orange/30 flex items-center justify-center">
                       <Zap className="w-3.5 h-3.5 text-brand-orange" />
                     </div>
@@ -305,14 +305,14 @@ export default function Hero({ isLoaded = true }: HeroProps) {
                 </div>
 
                 {/* Simulated Code Panel */}
-                <div className="flex-1 bg-white/40 border border-slate-850 p-2 sm:p-3 rounded-lg flex flex-col justify-between font-mono text-[8.5px] sm:text-[10px] text-slate-500 leading-relaxed overflow-hidden">
+                <div className="flex-1 bg-slate-900/40 border border-slate-850 p-2 sm:p-3 rounded-lg flex flex-col justify-between font-mono text-[8.5px] sm:text-[10px] text-slate-400 leading-relaxed overflow-hidden">
                   <div className="text-[8px] sm:text-[9.5px] space-y-0.5">
                     <p className="text-slate-500">// Initialize autonomous routing</p>
-                    <p className="text-brand-blue"><span className="text-purple-400">const</span> agent <span className="text-slate-600">=</span> <span className="text-amber-300">new</span> <span className="text-emerald-400">RahvixAgent</span><span className="text-slate-600">({'{'}</span></p>
+                    <p className="text-brand-blue"><span className="text-purple-400">const</span> agent <span className="text-slate-300">=</span> <span className="text-amber-300">new</span> <span className="text-emerald-400">RahvixAgent</span><span className="text-slate-300">({'{'}</span></p>
                     <p className="pl-3 sm:pl-4">model: <span className="text-brand-orange">&quot;gpt-4o-automation&quot;</span>,</p>
                     <p className="pl-3 sm:pl-4">temperature: <span className="text-brand-orange">0.0</span>,</p>
                     <p className="pl-3 sm:pl-4">pipeline: <span className="text-brand-orange">&quot;custom-crm-sync&quot;</span></p>
-                    <p className="text-slate-600">{'}'});</p>
+                    <p className="text-slate-300">{'}'});</p>
                   </div>
                   <div className="border-t border-slate-850/50 pt-1.5 flex items-center justify-between text-[7.5px] sm:text-[8px] text-slate-500 font-semibold uppercase">
                     <span>uptime: 99.9%</span>
@@ -322,19 +322,19 @@ export default function Hero({ isLoaded = true }: HeroProps) {
 
                 {/* Stats Pill / Chart Graphic */}
                 <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
-                  <div className="bg-white/50 border border-slate-850 p-2 sm:p-2.5 rounded-lg flex items-center justify-between">
+                  <div className="bg-slate-900/50 border border-slate-850 p-2 sm:p-2.5 rounded-lg flex items-center justify-between">
                     <div>
                       <span className="text-[8px] text-slate-550 uppercase font-bold">Efficiency</span>
-                      <p className="text-xs font-bold text-slate-900 mt-0.5">+340%</p>
+                      <p className="text-xs font-bold text-white mt-0.5">+340%</p>
                     </div>
                     <div className="h-6 w-10 flex items-end gap-0.5 pb-0.5">
-                      <div className="w-1.5 h-2 bg-slate-100 rounded-t" />
-                      <div className="w-1.5 h-3 bg-slate-100 rounded-t" />
+                      <div className="w-1.5 h-2 bg-slate-800 rounded-t" />
+                      <div className="w-1.5 h-3 bg-slate-800 rounded-t" />
                       <div className="w-1.5 h-4 bg-brand-blue/60 rounded-t" />
                       <div className="w-1.5 h-6 bg-brand-blue rounded-t" />
                     </div>
                   </div>
-                  <div className="bg-white/50 border border-slate-850 p-2 sm:p-2.5 rounded-lg flex items-center justify-between">
+                  <div className="bg-slate-900/50 border border-slate-850 p-2 sm:p-2.5 rounded-lg flex items-center justify-between">
                     <div>
                       <span className="text-[8px] text-slate-550 uppercase font-bold">ROI generated</span>
                       <p className="text-xs font-bold text-brand-orange mt-0.5">6.2x</p>

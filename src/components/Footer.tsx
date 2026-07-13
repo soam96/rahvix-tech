@@ -70,7 +70,7 @@ export default function Footer() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="relative bg-slate-50 border-t border-slate-900 py-12 px-6 overflow-hidden"
+      className="relative bg-slate-950 border-t border-slate-900 py-12 px-6 overflow-hidden"
     >
       {/* Subtle background flow overlay */}
       <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full glow-blue opacity-15 pointer-events-none -z-10" />
@@ -80,7 +80,7 @@ export default function Footer() {
         {/* Left: Branding */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
           <a href="#" className="flex items-center gap-2 mb-3">
-            <div className="relative w-10 h-8 rounded overflow-hidden flex items-center justify-center border border-slate-200 bg-slate-50 shrink-0">
+            <div className="relative w-10 h-8 rounded overflow-hidden flex items-center justify-center border border-slate-800 bg-slate-950 shrink-0">
               <Image
                 src="/logo.jpg"
                 alt="Rahvix Technologies Logo"
@@ -89,17 +89,17 @@ export default function Footer() {
                 className="w-full h-full object-contain p-0.5"
               />
             </div>
-            <span className="font-sans font-bold tracking-tight text-slate-900 text-sm">
+            <span className="font-sans font-bold tracking-tight text-white text-sm">
               Rahvix Technologies
             </span>
           </a>
-          <p className="text-[11px] text-slate-500 font-mono max-w-[260px]">
+          <p className="text-[11px] text-slate-400 font-mono max-w-[260px]">
             Next-Gen AI Automation, Elite Software Engineering, &amp; Scale Marketing.
           </p>
         </div>
 
         {/* Center: Quick Links */}
-        <nav className="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500 font-mono" aria-label="Footer navigation">
+        <nav className="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400 font-mono" aria-label="Footer navigation">
           {quickLinks.map((link) => (
             <a
               key={link.name}
@@ -122,7 +122,7 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-lg border border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:text-brand-orange hover:border-slate-300 hover:bg-slate-850 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-orange"
+                  className="w-8 h-8 rounded-lg border border-slate-800 bg-slate-900 flex items-center justify-center text-slate-350 hover:text-brand-orange hover:border-slate-700 hover:bg-slate-850 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-orange"
                   aria-label={`Follow Rahvix on ${social.name}`}
                 >
                   <IconComp className="w-4 h-4" />
@@ -133,7 +133,7 @@ export default function Footer() {
 
           <button
             onClick={handleScrollToTop}
-            className="w-8 h-8 rounded-lg border border-slate-200 bg-white flex items-center justify-center text-slate-600 hover:text-brand-orange hover:border-slate-300 hover:bg-slate-850 transition-all cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-orange"
+            className="w-8 h-8 rounded-lg border border-slate-800 bg-slate-900 flex items-center justify-center text-slate-350 hover:text-brand-orange hover:border-slate-700 hover:bg-slate-850 transition-all cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-orange"
             aria-label="Scroll to top"
           >
             <ArrowUp className="w-4 h-4" />
@@ -143,7 +143,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Copyright */}
-      <div className="max-w-7xl mx-auto w-full mt-8 pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] text-slate-500 font-mono">
+      <div className="max-w-7xl mx-auto w-full mt-8 pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] text-slate-450 font-mono">
         <p>© {currentYear} Rahvix Technologies. All rights reserved.</p>
         <div className="flex gap-4">
           <a href="#" className="hover:text-brand-orange transition-colors">Privacy Policy</a>

@@ -64,7 +64,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-white"
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-[#030712]"
         >
           {/* ── Ambient background orbs ── */}
           <motion.div
@@ -163,7 +163,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
               {/* Logo image */}
               <motion.div
-                className="relative w-16 h-16 rounded-xl overflow-hidden border border-slate-200/80 bg-slate-50 shadow-2xl"
+                className="relative w-16 h-16 rounded-xl overflow-hidden border border-slate-800/80 bg-slate-950 shadow-2xl"
                 animate={phase === "complete" ? { scale: [1, 1.08, 1] } : {}}
                 transition={{ duration: 0.4, ease: "easeOut" }}
               >
@@ -201,7 +201,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                         transition: { type: "spring", stiffness: 200, damping: 14 },
                       },
                     }}
-                    className="text-2xl font-extrabold tracking-[0.3em] text-slate-900 font-sans"
+                    className="text-2xl font-extrabold tracking-[0.3em] text-white font-sans"
                   >
                     {char}
                   </motion.span>
@@ -224,7 +224,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
               transition={{ delay: 0.6, duration: 0.5 }}
               className="flex flex-col gap-2 items-center"
             >
-              <div className="w-[200px] h-[1.5px] bg-slate-100 rounded-full overflow-hidden relative">
+              <div className="w-[200px] h-[1.5px] bg-slate-800 rounded-full overflow-hidden relative">
                 <motion.div
                   className="h-full rounded-full"
                   style={{
@@ -264,14 +264,14 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                   initial={{ scaleY: 0, originY: "top" }}
                   animate={{ scaleY: 1 }}
                   transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute top-0 left-0 right-0 h-1/2 bg-white z-50"
+                  className="absolute top-0 left-0 right-0 h-1/2 bg-[#030712] z-50"
                 />
                 <motion.div
                   key="curtain-bottom"
                   initial={{ scaleY: 0, originY: "bottom" }}
                   animate={{ scaleY: 1 }}
                   transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute bottom-0 left-0 right-0 h-1/2 bg-white z-50"
+                  className="absolute bottom-0 left-0 right-0 h-1/2 bg-[#030712] z-50"
                 />
               </>
             )}
