@@ -150,7 +150,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
               }
               
               return (
-                <span key={i} className="inline-block mr-2 sm:mr-3 overflow-hidden py-0.5 sm:py-1">
+                <span key={i} className="inline-block mr-2 sm:mr-3 overflow-hidden pt-0.5 pb-2 sm:pt-1 sm:pb-3 -mb-2 sm:-mb-3">
                   <motion.span
                     variants={{
                       hidden: { y: "100%", opacity: 0 },
