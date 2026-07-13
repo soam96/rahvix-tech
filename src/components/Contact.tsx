@@ -165,8 +165,9 @@ ${formData.message}`;
                 <div>
                   <span className="text-[9px] uppercase tracking-widest text-slate-400 font-bold">Corporate HQ</span>
                   <p className="mt-1 text-sm text-slate-300 leading-relaxed font-medium">
-                    Udyog Vihar, Phase IV, Sector 18,<br />
-                    Gurugram, Haryana, India — 122015
+                    Fq8V+Rjq, Division, 79/3,<br />
+                    Shubhra Heights Rd, Shivane,<br />
+                    Pune, Maharashtra — 411023
                   </p>
                 </div>
               </div>
