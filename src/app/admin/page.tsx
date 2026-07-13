@@ -79,7 +79,7 @@ const DEFAULT_COMPANY_PHONES = [
   "+91 89 9945 7290"
 ];
 
-const DEFAULT_COMPANY_ADDRESS = "Survey No. 79, Dhone Apt Ground floor, Near chaudhary Bricks, Dangat vasti, Shivane, Pune - 411023, Maharashtra";
+const DEFAULT_COMPANY_ADDRESS = "Fq8V+Rjq, Division, 79/3, Shubhra Heights Rd, Shivane, Pune, Maharashtra 411023";
 
 const DEFAULT_DOC_DATA: DocData = {
   id: "",
