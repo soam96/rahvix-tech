@@ -58,13 +58,13 @@ export const servicesData: ServiceCategoryData[] = [
         pricing: [
           {
             name: "Pilot Integration",
-            price: "₹75,000",
+            price: "₹25,000",
             description: "A proof-of-concept AI chatbot or single automated workflow.",
             features: ["1 Custom GPT/Agent", "Basic Knowledge Base (RAG)", "Website Integration", "14 Days Support"]
           },
           {
             name: "Enterprise Automation",
-            price: "₹3,00,000+",
+            price: "₹95,000+",
             description: "Full-scale multi-agent system integrated into your core business tools.",
             features: ["Multiple Specialized Agents", "CRM/ERP Integrations", "Advanced Analytics Dashboard", "Priority Support SLA"]
           }
@@ -92,13 +92,13 @@ export const servicesData: ServiceCategoryData[] = [
         pricing: [
           {
             name: "Standard CRM",
-            price: "₹1,80,000",
+            price: "₹45,000",
             description: "Custom built sales pipeline and lead management system.",
             features: ["Lead Management", "Custom Dashboards", "Basic Automations", "Role-based Access"]
           },
           {
             name: "Advanced ERP/CRM",
-            price: "₹4,50,000+",
+            price: "₹1,20,000+",
             description: "End-to-end operational software including inventory and billing.",
             features: ["Inventory Management", "Invoice & Billing Sync", "Advanced APIs", "Mobile Application View"]
           }
@@ -126,13 +126,13 @@ export const servicesData: ServiceCategoryData[] = [
         pricing: [
           {
             name: "Infrastructure Audit",
-            price: "₹45,000",
+            price: "₹15,000",
             description: "Comprehensive review of current servers and security.",
             features: ["Security Vulnerability Report", "Cost Optimization Suggestions", "Architecture Review", "Actionable Roadmap"]
           },
           {
             name: "Complete Migration & Setup",
-            price: "₹2,00,000+",
+            price: "₹60,000+",
             description: "Full transition to optimized cloud infrastructure.",
             features: ["Zero-Downtime Migration", "Load Balancing Setup", "Automated Backups", "CI/CD Pipeline Setup"]
           }
@@ -169,13 +169,13 @@ export const servicesData: ServiceCategoryData[] = [
         pricing: [
           {
             name: "Corporate Website",
-            price: "₹95,000",
+            price: "₹25,000",
             description: "High-end corporate presence with animations and CMS.",
             features: ["Up to 10 Pages", "Custom Animations", "Contact Forms & Lead Capture", "Mobile Optimized"]
           },
           {
             name: "Complex Web Application",
-            price: "₹3,50,000+",
+            price: "₹85,000+",
             description: "Full-stack web apps like marketplaces or SaaS platforms.",
             features: ["User Authentication", "Database Architecture", "Payment Gateways", "Custom Dashboards"]
           }
@@ -203,13 +203,13 @@ export const servicesData: ServiceCategoryData[] = [
         pricing: [
           {
             name: "MVP Application",
-            price: "₹3,50,000",
+            price: "₹95,000",
             description: "Core feature app to test the market and pitch investors.",
             features: ["Core Features Development", "iOS & Android Builds", "Basic Authentication", "3 Months Bug Support"]
           },
           {
             name: "Scale Application",
-            price: "₹7,50,000+",
+            price: "₹2,20,000+",
             description: "Feature-rich application ready for thousands of users.",
             features: ["Complex Animations", "Real-time Chat/Location", "Advanced Analytics", "Enterprise Security"]
           }
@@ -246,13 +246,13 @@ export const servicesData: ServiceCategoryData[] = [
         pricing: [
           {
             name: "Local SEO & GMB",
-            price: "₹20,000 /mo",
+            price: "₹8,000 /mo",
             description: "Perfect for local businesses wanting foot traffic.",
             features: ["GMB Optimization", "Local Citations", "Monthly Reporting", "Targeted Local Keywords"]
           },
           {
             name: "National SEO Growth",
-            price: "₹50,000+ /mo",
+            price: "₹22,000+ /mo",
             description: "Aggressive SEO for nationwide ranking.",
             features: ["Advanced Content Creation", "Premium Link Building", "Technical Audits", "Competitor Analysis"]
           }
@@ -280,13 +280,13 @@ export const servicesData: ServiceCategoryData[] = [
         pricing: [
           {
             name: "Brand Presence",
-            price: "₹25,000 /mo",
+            price: "₹12,000 /mo",
             description: "Consistent, high-quality posting schedule.",
             features: ["12 Posts / Month", "2 Platforms (e.g. IG, FB)", "Custom Graphics", "Basic Community Management"]
           },
           {
             name: "Aggressive Growth",
-            price: "₹65,000+ /mo",
+            price: "₹28,000+ /mo",
             description: "High-volume content including short-form video.",
             features: ["20+ Posts / Month", "Includes 4-6 Reels/Shorts", "LinkedIn Authority Building", "Comprehensive Reporting"]
           }
@@ -314,13 +314,13 @@ export const servicesData: ServiceCategoryData[] = [
         pricing: [
           {
             name: "Growth Ads Setup",
-            price: "₹35,000 /mo",
+            price: "₹15,000 /mo",
             description: "Management fee for spends up to ₹1 Lakh.",
             features: ["Meta or Google Ads", "Custom Ad Creatives", "Pixel Setup", "Bi-Weekly Reporting"]
           },
           {
             name: "Scale Performance",
-            price: "15% of Ad Spend",
+            price: "10% of Ad Spend",
             description: "For established businesses spending ₹3 Lakh+ monthly.",
             features: ["Omnichannel Campaigns", "Advanced Retargeting", "Conversion Rate Optimization", "Dedicated Account Manager"]
           }
@@ -357,13 +357,13 @@ export const servicesData: ServiceCategoryData[] = [
         pricing: [
           {
             name: "UGC Starter Pack",
-            price: "₹35,000",
+            price: "₹18,000",
             description: "Perfect for testing new products.",
             features: ["3 Final UGC Videos", "1 Creator", "Scriptwriting Included", "Commercial Usage Rights"]
           },
           {
             name: "D2C Scale Pack",
-            price: "₹95,000+",
+            price: "₹45,000+",
             description: "Volume content for rigorous A/B testing.",
             features: ["10 Final Videos", "Multiple Creators", "A/B Hook Variations", "Trend-based Audio"]
           }
@@ -391,13 +391,13 @@ export const servicesData: ServiceCategoryData[] = [
         pricing: [
           {
             name: "Corporate Film",
-            price: "₹1,80,000",
+            price: "₹60,000",
             description: "Professional overview of your business/factory.",
             features: ["1 Day Shoot", "Standard Crew", "Basic Lighting", "Final 2-min Video"]
           },
           {
             name: "Premium Commercial",
-            price: "₹5,00,000+",
+            price: "₹1,80,000+",
             description: "High-end cinematic ad for TV or heavy digital use.",
             features: ["Cinema Cameras (RED/ARRI)", "Full Production Crew", "Actor/Model Casting", "Advanced Color Grade"]
           }
@@ -425,13 +425,13 @@ export const servicesData: ServiceCategoryData[] = [
         pricing: [
           {
             name: "Short-Form Retainer",
-            price: "₹40,000 /mo",
+            price: "₹20,500 /mo",
             description: "Daily Reels/Shorts for personal brands.",
             features: ["Up to 15 Reels/Mo", "Alex Hormozi Style Captions", "Sound Effects", "48hr Turnaround"]
           },
           {
             name: "Long-Form Editing",
-            price: "₹12,000 /video",
+            price: "₹5,000 /video",
             description: "YouTube videos or podcasts.",
             features: ["Multi-cam Sync", "B-Roll Addition", "Color Grade", "Audio Enhancement"]
           }
@@ -459,13 +459,13 @@ export const servicesData: ServiceCategoryData[] = [
         pricing: [
           {
             name: "Identity Starter",
-            price: "₹35,000",
+            price: "₹15,000",
             description: "Core assets needed to launch a new business.",
             features: ["2 Logo Concepts", "Color Palette", "Basic Typography", "Final Vector Files"]
           },
           {
             name: "Full Brand System",
-            price: "₹1,50,000+",
+            price: "₹45,000+",
             description: "Complete design system for serious enterprises.",
             features: ["Extensive Logo Explorations", "50+ Page Brand Book", "Stationery Design", "Social Media Templates"]
           }
