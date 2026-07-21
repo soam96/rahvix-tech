@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import { Phone, Mail, MapPin, Send, CheckCircle2, ChevronDown, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import confetti from "canvas-confetti";
+// confetti is only needed on form submit success — lazy-loaded on demand
+// so it is excluded from the initial JS bundle (~15KB savings)
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -70,10 +71,12 @@ ${formData.message}`;
     const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
 
     try {
-      window.open(waUrl, "_blank");
+      window.open(waUrl, "_blank", "noopener,noreferrer");
       setStatus("success");
-      
-      confetti({
+
+      // Dynamic import — confetti is only downloaded on first success
+      const confettiModule = await import("canvas-confetti");
+      confettiModule.default({
         particleCount: 100,
         spread: 70,
         origin: { y: 0.6 },
@@ -129,13 +132,13 @@ ${formData.message}`;
                 <div>
                   <span className="text-[9px] uppercase tracking-widest text-slate-400 font-bold">Call Engineering &amp; Sales</span>
                   <div className="flex flex-col gap-1.5 mt-1 text-sm text-slate-300 font-medium">
-                    <a href="tel:+919139138170" className="hover:text-brand-orange transition-colors">
+                    <a href="tel:+919139138170" aria-label="Call Engineering Sales line 1: +91 913913 8170" className="hover:text-brand-orange transition-colors">
                       +91 913913 8170
                     </a>
-                    <a href="tel:+917397818170" className="hover:text-brand-orange transition-colors">
+                    <a href="tel:+917397818170" aria-label="Call Engineering Sales line 2: +91 739781 8170" className="hover:text-brand-orange transition-colors">
                       +91 739781 8170
                     </a>
-                    <a href="tel:+918999457290" className="hover:text-brand-orange transition-colors">
+                    <a href="tel:+918999457290" aria-label="Call Engineering Sales line 3: +91 899945 7290" className="hover:text-brand-orange transition-colors">
                       +91 899945 7290
                     </a>
                   </div>

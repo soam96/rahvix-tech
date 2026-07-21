@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import { 
   Brain, Database, Cpu, Globe, Smartphone, 
   MapPin, Share2, TrendingUp, Video, Camera, Film, Sparkles, Check, ArrowUpRight
@@ -88,6 +88,17 @@ const containerVariants: Variants = {
   }
 };
 
+// Module-level helper — defined once, not re-created on every ServiceCard render
+const getTicketClass = (title: string): string => {
+  switch (title) {
+    case "AI & Tech":        return "ticket-ai";
+    case "Development":      return "ticket-dev";
+    case "Marketing & Growth": return "ticket-marketing";
+    case "Creative & Production": return "ticket-creative";
+    default:                 return "";
+  }
+};
+
 function ServiceCard({ service, category, index }: ServiceCardProps) {
   const IconComponent = iconMap[service.iconName] || Brain;
   const cardRef = useRef<HTMLDivElement>(null);
@@ -165,24 +176,13 @@ function ServiceCard({ service, category, index }: ServiceCardProps) {
     }
   };
 
-  const cardVariants = getVariantsForCategory(category.title, isMobile);
+  // Memoized — only recomputed when isMobile or category changes, not on every render
+  const cardVariants = useMemo(
+    () => getVariantsForCategory(category.title, isMobile),
+    [category.title, isMobile]
+  );
 
-  const getTicketClass = (title: string) => {
-    switch (title) {
-      case "AI & Tech":
-        return "ticket-ai";
-      case "Development":
-        return "ticket-dev";
-      case "Marketing & Growth":
-        return "ticket-marketing";
-      case "Creative & Production":
-        return "ticket-creative";
-      default:
-        return "";
-    }
-  };
-
-  const ticketClass = getTicketClass(category.title);
+  const ticketClass = useMemo(() => getTicketClass(category.title), [category.title]);
 
   return (
     <motion.div

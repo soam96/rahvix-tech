@@ -225,23 +225,33 @@ export default function Projects() {
       );
     }
 
+    // Wave bars — CSS keyframe animation instead of 13 individual framer-motion loops.
+    // All bars share one @keyframes rule; animation-delay offsets each bar.
+    // This runs entirely on the GPU compositor thread, zero JS rAF cost.
     const waveBars = [30, 60, 45, 90, 75, 45, 60, 30, 80, 50, 40, 60, 20];
     return (
-      <div className="my-auto w-full max-w-[280px] h-[140px] flex items-center justify-between px-2 relative z-10 select-none">
-        {waveBars.map((h, i) => (
-          <motion.div
-            key={i}
-            animate={{ height: [h - 10, h + 10, h - 10] }}
-            transition={{
-              repeat: Infinity,
-              duration: 1.2 + (i % 3) * 0.2,
-              ease: "easeInOut",
-            }}
-            className="w-1 rounded-full bg-gradient-to-t from-brand-orange/40 to-brand-blue/80 border-t border-slate-800/60"
-            style={{ height: h * 0.8 }}
-          />
-        ))}
-      </div>
+      <>
+        <style>{`
+          @keyframes wave-bar {
+            0%, 100% { transform: scaleY(0.7); }
+            50%       { transform: scaleY(1.15); }
+          }
+        `}</style>
+        <div className="my-auto w-full max-w-[280px] h-[140px] flex items-center justify-between px-2 relative z-10 select-none">
+          {waveBars.map((h, i) => (
+            <div
+              key={i}
+              className="w-1 rounded-full bg-gradient-to-t from-brand-orange/40 to-brand-blue/80 border-t border-slate-800/60"
+              style={{
+                height: h * 0.8,
+                animation: `wave-bar ${1.2 + (i % 3) * 0.2}s ease-in-out infinite`,
+                animationDelay: `${i * 0.08}s`,
+                transformOrigin: "center",
+              }}
+            />
+          ))}
+        </div>
+      </>
     );
   };
 

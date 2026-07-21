@@ -68,6 +68,27 @@ export const metadata: Metadata = {
   },
 };
 
+// JSON-LD Organization schema for SEO rich results
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Rahvix Technologies",
+  url: "https://rahvix.com",
+  logo: "https://rahvix.com/logo.jpg",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+91-913913-8170",
+    contactType: "customer service",
+    areaServed: "IN",
+    availableLanguage: ["English", "Hindi"],
+  },
+  sameAs: [
+    "https://www.linkedin.com/company/rahvix-technologies",
+    "https://twitter.com/rahvix_tech",
+    "https://www.instagram.com/rahvix.tech",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -83,6 +104,15 @@ export default function RootLayout({
         {/* Preconnect to Google Fonts CDN to eliminate render-blocking */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Preload logo — appears in both LoadingScreen + Navbar, critical for FCP */}
+        <link rel="preload" href="/logo.jpg" as="image" type="image/jpeg" />
+        {/* Mobile browser chrome tinting */}
+        <meta name="theme-color" content="#06152d" />
+        {/* JSON-LD Organization schema for SEO rich results */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
       </head>
       <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] selection:bg-brand-orange/10 selection:text-brand-orange">
         {/* Global tactile noise texture (display:none — kept for potential future use) */}

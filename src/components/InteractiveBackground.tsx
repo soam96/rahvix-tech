@@ -32,12 +32,32 @@ export default function InteractiveBackground() {
     let animationFrameId: number;
     let paths: CircuitPath[] = [];
     const isMobileDevice = window.innerWidth < 768;
-    
+
     // Performance optimized limits based on device screens
-    const pathCount = isMobileDevice ? 2 : 10; 
+    const pathCount = isMobileDevice ? 2 : 10;
     const particleCount = isMobileDevice ? 5 : 15;
 
+    // Clamp devicePixelRatio to 2 — avoids 4x overdraw on 3x OLED phones
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
     let cachedGradient: CanvasGradient | null = null;
+
+    // Tab-visibility: pause rAF when tab is not visible (saves CPU entirely)
+    let isPageVisible = !document.hidden;
+    const handleVisibilityChange = () => {
+      isPageVisible = !document.hidden;
+      if (isPageVisible) {
+        // Resume loop on tab refocus
+        lastFrameTime = performance.now();
+        animationFrameId = requestAnimationFrame(draw);
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    // 30fps throttle on mobile — cuts GPU usage ~50% vs uncapped 60fps
+    const targetFps = isMobileDevice ? 30 : 60;
+    const frameDuration = 1000 / targetFps;
+    let lastFrameTime = 0;
 
     interface Particle {
       x: number;
@@ -49,21 +69,34 @@ export default function InteractiveBackground() {
     }
 
     let particles: Particle[] = [];
-    
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      
+
+    const setupCanvas = () => {
+      // Use logical pixel size; apply DPR for crisp rendering on retina
+      const logicalW = window.innerWidth;
+      const logicalH = window.innerHeight;
+      canvas.width = logicalW * dpr;
+      canvas.height = logicalH * dpr;
+      canvas.style.width = logicalW + "px";
+      canvas.style.height = logicalH + "px";
+      ctx.scale(dpr, dpr);
+
       cachedGradient = ctx.createRadialGradient(
-        canvas.width * 0.7, canvas.height * 0.2, 0,
-        canvas.width * 0.7, canvas.height * 0.2, canvas.width * 0.6
+        logicalW * 0.7, logicalH * 0.2, 0,
+        logicalW * 0.7, logicalH * 0.2, logicalW * 0.6
       );
-      cachedGradient.addColorStop(0, "rgba(250, 90, 21, 0.03)"); // Orange
-      cachedGradient.addColorStop(0.5, "rgba(59, 130, 246, 0.02)"); // Blue
+      cachedGradient.addColorStop(0, "rgba(250, 90, 21, 0.03)");
+      cachedGradient.addColorStop(0.5, "rgba(59, 130, 246, 0.02)");
       cachedGradient.addColorStop(1, "rgba(3, 7, 18, 0)");
-      
-      generatePaths();
-      generateParticles();
+
+      generatePaths(logicalW, logicalH);
+      generateParticles(logicalW, logicalH);
+    };
+
+    // Debounced resize — was firing every pixel; now waits 150ms after resize stops
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(setupCanvas, 150);
     };
 
     // Helper to generate a path with 90-degree turns (orthogonal)
@@ -94,24 +127,24 @@ export default function InteractiveBackground() {
       return points;
     };
 
-    const generatePaths = () => {
+    const generatePaths = (w: number, h: number) => {
       paths = [];
       const colors = [
         "rgba(255, 255, 255, 0.02)",
         "rgba(255, 255, 255, 0.02)",
         "rgba(255, 255, 255, 0.02)",
       ];
-      
+
       const glowColors = [
-        "rgba(250, 90, 21, 0.8)",  // Orange
+        "rgba(250, 90, 21, 0.8)",   // Orange
         "rgba(59, 130, 246, 0.8)",  // Blue
-        "rgba(124, 58, 237, 0.8)", // Purple
+        "rgba(124, 58, 237, 0.8)",  // Purple
       ];
 
       for (let i = 0; i < pathCount; i++) {
         const colorIndex = Math.floor(Math.random() * 3);
         paths.push({
-          points: createOrthogonalPath(canvas.width, canvas.height),
+          points: createOrthogonalPath(w, h),
           progress: Math.random(),
           speed: 0.0006 + Math.random() * 0.0012,
           color: colors[colorIndex],
@@ -121,7 +154,7 @@ export default function InteractiveBackground() {
       }
     };
 
-    const generateParticles = () => {
+    const generateParticles = (w: number, h: number) => {
       particles = [];
       const particleColors = [
         "rgba(250, 90, 21, 0.12)",
@@ -130,8 +163,8 @@ export default function InteractiveBackground() {
       ];
       for (let i = 0; i < particleCount; i++) {
         particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
+          x: Math.random() * w,
+          y: Math.random() * h,
           vx: (Math.random() - 0.5) * 0.25,
           vy: (Math.random() - 0.5) * 0.25,
           radius: Math.random() * 1.5 + 0.8,
@@ -142,35 +175,46 @@ export default function InteractiveBackground() {
 
     const getPointOnPath = (points: Point[], progress: number): Point => {
       if (points.length < 2) return { x: 0, y: 0 };
-      
+
       const totalSegments = points.length - 1;
       const segmentProgress = 1 / totalSegments;
-      
+
       const segmentIndex = Math.min(
         totalSegments - 1,
         Math.floor(progress / segmentProgress)
       );
-      
+
       const startPoint = points[segmentIndex];
       const endPoint = points[segmentIndex + 1];
       const localProgress = (progress - segmentIndex * segmentProgress) / segmentProgress;
-      
+
       return {
         x: startPoint.x + (endPoint.x - startPoint.x) * localProgress,
         y: startPoint.y + (endPoint.y - startPoint.y) * localProgress,
       };
     };
 
+    // Draw frame — throttled to targetFps on mobile, uncapped on desktop
+    const draw = (timestamp: number) => {
+      // Skip frame if tab is hidden
+      if (!isPageVisible) return;
 
+      // FPS throttle — only draw if enough time has elapsed
+      if (timestamp - lastFrameTime < frameDuration) {
+        animationFrameId = requestAnimationFrame(draw);
+        return;
+      }
+      lastFrameTime = timestamp;
 
-    // Draw frame call
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+
+      ctx.clearRect(0, 0, w, h);
 
       // Radial background glow blobs (cached)
       if (cachedGradient) {
         ctx.fillStyle = cachedGradient;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillRect(0, 0, w, h);
       }
 
       // Draw & Update Particles
@@ -178,10 +222,10 @@ export default function InteractiveBackground() {
         p.x += p.vx;
         p.y += p.vy;
 
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
+        if (p.x < 0) p.x = w;
+        if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h;
+        if (p.y > h) p.y = 0;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
@@ -213,14 +257,13 @@ export default function InteractiveBackground() {
 
       // Draw circuit paths
       paths.forEach((path) => {
-
         // Draw the trace line
         ctx.beginPath();
         ctx.moveTo(path.points[0].x, path.points[0].y);
         for (let i = 1; i < path.points.length; i++) {
           ctx.lineTo(path.points[i].x, path.points[i].y);
         }
-        
+
         ctx.strokeStyle = path.color;
         ctx.lineWidth = path.width;
         ctx.stroke();
@@ -239,7 +282,7 @@ export default function InteractiveBackground() {
         path.progress += path.speed;
         if (path.progress >= 1) {
           path.progress = 0;
-          path.points = createOrthogonalPath(canvas.width, canvas.height);
+          path.points = createOrthogonalPath(w, h);
         }
 
         const packetPos = getPointOnPath(path.points, path.progress);
@@ -247,21 +290,21 @@ export default function InteractiveBackground() {
         // Draw the glowing packet
         ctx.beginPath();
         ctx.arc(packetPos.x, packetPos.y, 1.5, 0, Math.PI * 2);
-        
-        // Neon glow ring - disabled on mobile for extreme graphics speedup
+
+        // Neon glow ring — disabled on mobile for GPU speedup
         if (!isMobileDevice) {
           ctx.shadowBlur = 6;
           ctx.shadowColor = path.glowColor;
         }
         ctx.fillStyle = path.glowColor;
         ctx.fill();
-        
+
         // Inner white core
         ctx.beginPath();
         ctx.arc(packetPos.x, packetPos.y, 0.6, 0, Math.PI * 2);
         ctx.fillStyle = "#ffffff";
         ctx.fill();
-        
+
         if (!isMobileDevice) {
           ctx.shadowBlur = 0;
         }
@@ -272,11 +315,13 @@ export default function InteractiveBackground() {
 
     window.addEventListener("resize", handleResize);
 
-    handleResize();
-    draw();
+    setupCanvas();
+    animationFrameId = requestAnimationFrame(draw);
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      clearTimeout(resizeTimer);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

@@ -79,19 +79,16 @@ export default function Footer() {
 
         {/* Left: Branding */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
-          <a href="#" className="flex items-center gap-2 mb-3">
-            <div className="relative w-10 h-8 rounded overflow-hidden flex items-center justify-center border border-slate-800 bg-slate-950 shrink-0">
+          <a href="#" className="flex items-center gap-3 mb-3 group">
+            <div className="relative h-10 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
               <Image
                 src="/logo.jpg"
                 alt="Rahvix Technologies Logo"
-                width={40}
-                height={32}
-                className="w-full h-full object-contain p-0.5"
+                width={120}
+                height={40}
+                className="h-full w-auto object-contain rounded-lg"
               />
             </div>
-            <span className="font-sans font-bold tracking-tight text-white text-sm">
-              Rahvix Technologies
-            </span>
           </a>
           <p className="text-[11px] text-slate-400 font-mono max-w-[260px]">
             Next-Gen AI Automation, Elite Software Engineering, &amp; Scale Marketing.

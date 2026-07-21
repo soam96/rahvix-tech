@@ -5,7 +5,6 @@ import { ArrowLeft, CheckCircle2, ChevronRight, Package, Target } from "lucide-r
 import { servicesData } from "@/data/services";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Image from "next/image";
 import ServiceVisual from "@/components/ServiceVisual";
 
 // Pre-render all service detail pages at build time
@@ -108,14 +107,14 @@ export default async function ServiceDetail({
               {foundService.desc}
             </p>
 
-            <a 
+            <Link 
               href="/#contact"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-white font-extrabold transition-all hover:scale-105 active:scale-95 shadow-lg"
               style={{ backgroundColor: foundCategory.accentColor, boxShadow: `0 4px 20px ${foundCategory.accentColor}30` }}
             >
               Book a Free Consultation
               <ChevronRight className="w-5 h-5" />
-            </a>
+            </Link>
           </div>
 
           {/* Right Column: Visual Mockup */}
@@ -218,7 +217,7 @@ export default async function ServiceDetail({
                   ))}
                 </ul>
                 
-                <a 
+                <Link 
                   href="/#contact" 
                   className="w-full py-3 rounded-lg text-center font-extrabold text-sm transition-all border block"
                   style={
@@ -228,7 +227,7 @@ export default async function ServiceDetail({
                   }
                 >
                   Request Proposal
-                </a>
+                </Link>
               </div>
             ))}
             

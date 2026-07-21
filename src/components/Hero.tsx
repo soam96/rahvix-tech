@@ -3,6 +3,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { ArrowUpRight, Play, Zap, Cpu, Award, Users } from "lucide-react";
 import { motion, useInView } from "framer-motion";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 // Animated counter that counts up from 0 when in view
 function AnimatedStat({
@@ -25,7 +26,7 @@ function AnimatedStat({
 
     const match = value.match(/^(₹?|\$?)([0-9.]+)(.*)$/);
     if (!match) {
-      setDisplayed(value);
+      requestAnimationFrame(() => setDisplayed(value));
       return;
     }
 
@@ -70,23 +71,13 @@ interface HeroProps {
 
 export default function Hero({ isLoaded = true }: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-
-
-
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+  // Use shared hook instead of a per-component resize listener
+  const isMobile = useIsMobile();
 
   const stats = [
-    { value: "99.9%", label: "System Uptime", icon: Cpu, colorClass: "text-brand-teal" },
-    { value: "10x", label: "Efficiency Boost", icon: Award, colorClass: "text-brand-purple" },
-    { value: "₹40Cr+", label: "ROI Generated", icon: Users, colorClass: "text-brand-orange" },
+    { value: "99.9%", label: "SLA Commitment", icon: Cpu, colorClass: "text-brand-teal" },
+    { value: "15+", label: "Elite Projects", icon: Award, colorClass: "text-brand-purple" },
+    { value: "100%", label: "Client Dedication", icon: Users, colorClass: "text-brand-orange" },
   ];
 
   const headlineText = "Architecting Digital Monopolies for Scale.";
@@ -95,7 +86,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center pt-32 pb-24 overflow-hidden px-6 bg-transparent"
+      className="relative min-h-screen flex items-center justify-center pt-32 pb-24 overflow-x-hidden px-6 bg-transparent"
     >
       {/* Background Decorative Blobs */}
       <div className="absolute top-[10%] left-[20%] w-[500px] h-[500px] rounded-full glow-cyan -z-10 opacity-60 pointer-events-none" />
@@ -139,7 +130,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
             }}
             initial="hidden"
             animate={isLoaded ? "visible" : "hidden"}
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.08] max-w-2xl font-sans"
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.25] max-w-2xl font-sans pb-3"
           >
             {words.map((word, i) => {
               let wordClass = "";
@@ -150,10 +141,10 @@ export default function Hero({ isLoaded = true }: HeroProps) {
               }
               
               return (
-                <span key={i} className="inline-block mr-2 sm:mr-3 overflow-hidden pt-0.5 pb-2 sm:pt-1 sm:pb-3 -mb-2 sm:-mb-3">
+                <span key={i} className="inline-block mr-2 sm:mr-3">
                   <motion.span
                     variants={{
-                      hidden: { y: "100%", opacity: 0 },
+                      hidden: { y: 30, opacity: 0 },
                       visible: { 
                         y: 0, 
                         opacity: 1,
@@ -239,20 +230,15 @@ export default function Hero({ isLoaded = true }: HeroProps) {
 
         {/* Right Column: Hero Interactive Illustration */}
         <div className="lg:col-span-5 flex justify-center w-full relative">
+          {/* On mobile: use CSS float animation (GPU compositor, no repaints).
+              On desktop: entrance-only spring animation that settles once. */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 25 }}
-            animate={isLoaded 
-              ? (isMobile 
-                ? { opacity: 1, scale: 1, y: [0, -10, 0], rotate: [0, 0.5, -0.5, 0] } 
-                : { opacity: 1, scale: 1, y: 0 }) 
-              : { opacity: 0, scale: 0.95, y: 25 }
-            }
-            transition={isLoaded && isMobile ? {
-              repeat: Infinity,
-              duration: 6,
-              ease: "easeInOut"
-            } : { duration: 0.8, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full max-w-[440px] aspect-[4/5] sm:aspect-square rounded-3xl border border-slate-800 bg-slate-900/60 p-3 sm:p-4 shadow-2xl backdrop-blur-md relative overflow-hidden"
+            animate={isLoaded ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.95, y: 25 }}
+            transition={{ duration: 0.8, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
+            className={`w-full max-w-[440px] aspect-[4/5] sm:aspect-square rounded-3xl border border-slate-800 bg-slate-900/60 p-3 sm:p-4 shadow-2xl backdrop-blur-md relative overflow-hidden${
+              isMobile ? " animate-float-slow" : ""
+            }`}
           >
             {/* Holographic scanner active line overlay */}
             <div className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-brand-orange via-brand-purple to-brand-teal opacity-50 z-20 animate-scanline pointer-events-none" />
@@ -307,7 +293,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
                 {/* Simulated Code Panel */}
                 <div className="flex-1 bg-slate-900/40 border border-slate-850 p-2 sm:p-3 rounded-lg flex flex-col justify-between font-mono text-[8.5px] sm:text-[10px] text-slate-400 leading-relaxed overflow-hidden">
                   <div className="text-[8px] sm:text-[9.5px] space-y-0.5">
-                    <p className="text-slate-500">// Initialize autonomous routing</p>
+                    <p className="text-slate-500">{"// Initialize autonomous routing"}</p>
                     <p className="text-brand-blue"><span className="text-purple-400">const</span> agent <span className="text-slate-300">=</span> <span className="text-amber-300">new</span> <span className="text-emerald-400">RahvixAgent</span><span className="text-slate-300">({'{'}</span></p>
                     <p className="pl-3 sm:pl-4">model: <span className="text-brand-orange">&quot;gpt-4o-automation&quot;</span>,</p>
                     <p className="pl-3 sm:pl-4">temperature: <span className="text-brand-orange">0.0</span>,</p>

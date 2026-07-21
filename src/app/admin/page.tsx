@@ -151,13 +151,14 @@ export default function AdminDashboard() {
   useEffect(() => {
     const authed = sessionStorage.getItem("rahvix_admin_auth");
     if (authed === "true") {
-      setIsAuthenticated(true);
+      queueMicrotask(() => setIsAuthenticated(true));
     }
 
     const saved = localStorage.getItem("rahvix_doc_drafts");
     if (saved) {
       try {
-        setDrafts(JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        queueMicrotask(() => setDrafts(parsed));
       } catch (err) {
         console.error("Failed to parse drafts", err);
       }
@@ -205,15 +206,17 @@ export default function AdminDashboard() {
         break;
     }
 
-    setFormData(prev => ({
-      ...prev,
-      type: docType,
-      title,
-      docNumber: number,
-      dueDateOrExpiry: docType === "invoice" 
-        ? new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]
-        : new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]
-    }));
+    queueMicrotask(() => {
+      setFormData(prev => ({
+        ...prev,
+        type: docType,
+        title,
+        docNumber: number,
+        dueDateOrExpiry: docType === "invoice" 
+          ? new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]
+          : new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]
+      }));
+    });
   }, [docType]);
 
   const showToast = (message: string) => {
